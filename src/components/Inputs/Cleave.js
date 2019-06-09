@@ -5,6 +5,8 @@ import InputCleave from 'cleave.js/react'
 const Input = styled(InputCleave)`
   width: 100%;
   height: 32px;
+  font-family: ${props => props.theme.major};
+  font-weight: 300;
   background-color: #ffffff;
   color: #000;
   border: 1px solid #d9d9d9;
@@ -24,6 +26,9 @@ const Input = styled(InputCleave)`
     border-right-width: 1px !important;
     outline: 0;
     box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+  ::placeholder {
+    color: #bfbfbf;
   }
 `
 const Wrapper = styled.div`
@@ -50,12 +55,9 @@ export default props => {
     setCleaveObj(cleave)
   })
 
-  useEffect(
-    () => {
-      cleaveObj && cleaveObj.setRawValue(value)
-    },
-    [value],
-  )
+  useEffect(() => {
+    cleaveObj && cleaveObj.setRawValue(value)
+  }, [value])
 
   return (
     <Wrapper>

@@ -8,7 +8,6 @@ import { FormRow, FormCol } from '@components/flex'
 import Fields from '@components/forms/Fields'
 import { isRequired } from '@components/forms/validators'
 import { OvalButton } from '@components/buttons'
-import Loader from '@components/Loader'
 
 const Form = styled.form`
   display: flex;
@@ -27,17 +26,12 @@ const WrapperSubmitButton = styled.div`
   align-content: center;
   align-self: center;
 `
-const SubmitButton = styled(OvalButton)`
-  width: 120px;
-`
 const DontAccountText = styled.div`
   color: #969696;
   display: flex;
   justify-content: center;
 `
-const RegisterLink = styled(Link)`
-  color: #000;
-`
+
 const WrapperForgotPassword = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -76,13 +70,13 @@ export default reduxForm({ form: 'loginForm' })(props => {
         <Link to={paths.forgotPassword()}>Forgot Password</Link>
       </WrapperForgotPassword>
       <WrapperSubmitButton>
-        <SubmitButton type="primary" htmlType="submit" loading={submitting} disabled={submitting}>
+        <OvalButton type="primary" htmlType="submit" loading={submitting} disabled={submitting}>
           Login
-        </SubmitButton>
+        </OvalButton>
       </WrapperSubmitButton>
       <DontAccountText>
         Don’t have account yet? &nbsp;
-        <RegisterLink to={paths.register()}>Register now</RegisterLink>
+        <Link to={paths.register()}>Register now</Link>
       </DontAccountText>
     </Form>
   )

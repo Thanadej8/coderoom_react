@@ -16,7 +16,15 @@ export const isRequired = value => {
 
 export const minString = minSize => value => {
   const status = isMinString({ minString: minSize, value })
-  return !status ? `*greater than or equal to ${minSize}` : undefined
+  return !status ? `*greater than or equal to ${minSize} character` : undefined
+}
+
+export const fitString = size => value => {
+  let status = false
+  if (typeof value === 'string') {
+    status = value.length === size
+  }
+  return !status ? `*equal to ${size} character` : undefined
 }
 
 export const isEmail = value => {
@@ -40,4 +48,10 @@ export const maxFileSize = maxByte => file => {
     status = true
   }
   return status ? `*please upload files that are no larger than ${maxSize} ${maxUnit}` : undefined
+}
+
+export const isSilpakornEmail = value => {
+  let status = false
+  status = /.+@silpakorn.edu$/.test(value)
+  return !status ? '*required only @silpakorn.edu' : undefined
 }

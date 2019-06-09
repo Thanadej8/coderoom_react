@@ -15,3 +15,20 @@ const Card = styled.div`
     align-items: center;
   }
 `
+
+const TitlePage = styled.h2`
+  font-size: 32px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 20px;
+`
+
+export default props => {
+  const { children, title } = props
+  return (
+    <Card>
+      <TitlePage>{title}</TitlePage>
+      {children}
+    </Card>
+  )
+}

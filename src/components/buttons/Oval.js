@@ -5,6 +5,7 @@ import AntdButton from './Antd'
 
 const Button = styled(AntdButton)`
   border-radius: 30px;
+  width: 120px;
 `
 
 export default props => {

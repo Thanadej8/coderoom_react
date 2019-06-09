@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
+import { Link } from 'react-router-dom'
 
 import { useTitlePage } from '@hooks'
 import Http from '@utils/api'
 import FormCard from '@components/FormCard'
-
+import { paths } from '@routers'
 import Form from './Form'
 
 const Wrapper = styled.div`
@@ -18,18 +19,26 @@ const Wrapper = styled.div`
     align-items: center;
   }
 `
+const WrapperLoginLink = styled.div`
+  color: #969696;
+  display: flex;
+  justify-content: flex-end;
+`
+
 export default props => {
-  useTitlePage('Login')
+  useTitlePage('Register')
 
   const handleSubmit = useCallback(async values => {
     // const response = await Http.get()
     console.log('handleSubmit', values)
   }, [])
-
   return (
     <Wrapper>
-      <FormCard title="Login">
+      <FormCard title="Register">
         <Form onSubmit={handleSubmit} />
+        <WrapperLoginLink>
+          Do you want to&nbsp;<Link to={paths.root()}>Login ?</Link>
+        </WrapperLoginLink>
       </FormCard>
     </Wrapper>
   )
