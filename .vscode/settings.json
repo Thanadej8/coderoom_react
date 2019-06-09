@@ -1,0 +1,17 @@
+{
+  "[javascript]": {
+    "editor.formatOnSave": true,
+  },
+  "path-intellisense.mappings": {
+    "@assets": "${workspaceRoot}/src/assets",
+    "@components": "${workspaceRoot}/src/components",
+    "@pages": "${workspaceRoot}/src/pages",
+    "@styles": "${workspaceRoot}/src/styles",
+    "@utils": "${workspaceRoot}/src/utils",
+    "@routers": "${workspaceRoot}/src/routers",
+    "@enhancers": "${workspaceRoot}/src/enhancers",
+    "@hooks": "${workspaceRoot}/src/hooks",
+    "@stores": "${workspaceRoot}/src/stores"
+  },
+  "path-intellisense.autoSlashAfterDirectory": false
+}

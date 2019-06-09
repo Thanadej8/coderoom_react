@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+      "formulahendry.auto-close-tag",
+      "naumovs.color-highlight",
+      "dbaeumer.vscode-eslint",
+      "christian-kohler.path-intellisense",
+      "esbenp.prettier-vscode",
+      "robinbentley.sass-indented",
+      "jpoissonnier.vscode-styled-components"
+  ]
+}

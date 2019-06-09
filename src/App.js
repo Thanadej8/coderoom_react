@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useCallback } from 'react'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+import { ThemeProvider as EmotionProvider } from 'emotion-theming'
 
-function App() {
+import getTheme from '@styles/theme'
+import stores from '@stores'
+import { PageLoadable } from '@routers'
+
+import '@styles/global'
+
+const AsyncPages = PageLoadable({ loader: () => import('@pages') })
+
+const App = () => {
+  const theme = useCallback(() => getTheme(), [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <EmotionProvider theme={theme}>
+      <Provider store={stores}>
+        <BrowserRouter>
+          <AsyncPages />
+        </BrowserRouter>
+      </Provider>
+    </EmotionProvider>
+  )
 }
 
-export default App;
+export default App
