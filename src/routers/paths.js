@@ -2,17 +2,14 @@ import pathToRegexp from 'path-to-regexp'
 import queryString from 'query-string'
 import { pick } from 'ramda'
 
-const configs = [
+export const configs = [
   { name: 'root', path: '' },
+  { name: 'login', path: 'login' },
   { name: 'register', path: 'register' },
   { name: 'forgotPassword', path: 'forgot-password' },
-  // { name: 'member', path: 'member' },
-  // { name: 'memberDashboard', path: 'member/dashboard' },
-  // { name: 'memberOrders', path: 'member/orders' },
-  // { name: 'memberPhoneNumbers', path: 'member/phonenumbers' },
-  // { name: 'memberCategories', path: 'member/categories' },
-  // { name: 'memberUsers', path: 'member/users' },
-  // { name: 'memberSettings', path: 'member/settings' },
+  { name: 'member', path: 'member' },
+  { name: 'memberProfile', path: 'member/profile' },
+  { name: 'memberDashboard', path: 'member/dashboard' },
 ]
 
 const prefix = ''

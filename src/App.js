@@ -8,6 +8,7 @@ import stores from '@stores'
 import { PageLoadable } from '@routers'
 
 import '@styles/global'
+import '@assets/icons/css/Glyphter.css'
 
 const AsyncPages = PageLoadable({ loader: () => import('@pages') })
 

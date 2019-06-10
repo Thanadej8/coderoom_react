@@ -12,5 +12,5 @@ const override = css`
 `
 
 export default ({ className }) => (
-  <HashLoader css={className || override} sizeUnit={'px'} color="#1d7c5c" />
+  <HashLoader css={className || override} sizeUnit={'px'} color="##117167" />
 )

@@ -1,5 +1,8 @@
 import { createAction, handleActions } from 'redux-actions'
 
+import { removeAuthToken } from '@utils/session'
+
+export const logout = createAction('LOGOUT')
 export const fetchCurrentUser = createAction('FETCH_CURRENT_USER')
 
 export default handleActions(
@@ -7,9 +10,14 @@ export default handleActions(
     [
       fetchCurrentUser,
       (state, action) => {
-        console.log('state', state)
-        console.log('action', action)
         return { currentUser: { name: 'Thanadej Phadtong' } }
+      },
+    ],
+    [
+      logout,
+      (state, action) => {
+        removeAuthToken()
+        return { currentUser: null }
       },
     ],
   ]),
