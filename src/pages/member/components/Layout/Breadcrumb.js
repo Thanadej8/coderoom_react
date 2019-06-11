@@ -16,38 +16,44 @@ const CustomLink = styled(Link)`
   color: #000;
 `
 
-const getSubHierarchyPath = ({ hierarchy, path, index }) => {
-  const path = '/'
+const getHierarchy = pathname => {
+  let hierarchy = []
+  const splitPath = pathname && pathname.substr(1, pathname.length).split('/')
+  splitPath &&
+    splitPath.length !== 0 &&
+    splitPath.forEach((path, index) => {
+      if (path === '') return
+      if (index === 0) {
+        hierarchy = [{ name: path, path: `/${path}` }]
+      } else {
+        const beforePath = hierarchy[index - 1]
+        hierarchy = [...hierarchy, { name: path, path: `${beforePath.path}/${path}` }]
+      }
+    })
+  return hierarchy
 }
 
 export default withRouter(props => {
-  console.log('props', props)
   const { location } = props
   const { pathname } = location
-  const mathPathName = useMemo(
-    () => (pathname && pathname.length !== 0 ? pathname.substring(1, pathname.length) : null),
-    [pathname],
-  )
-  console.log('mathPathName', mathPathName)
-  const hierarchy = useMemo(() => mathPathName && mathPathName.split('/'), [mathPathName])
-  console.log('hierarchy', hierarchy)
-  // member/dashboard
+  const hierarchys = getHierarchy(pathname)
+
   return (
     <Breadcrumb>
-      {hierarchy.length !== 0 &&
-        hierarchy.map((path, index) => {
-          if (path === 'member')
+      {hierarchys.length !== 0 &&
+        hierarchys.map((obj, index) => {
+          console.log('obj', obj)
+          if (obj.name === 'member')
             return (
               <Breadcrumb.Item>
-                <CustomLink to={paths.member()}>
+                <CustomLink to={obj.path}>
                   <HomeIcon name="home" />
                 </CustomLink>
               </Breadcrumb.Item>
             )
-          const subHierarchyPath = getSubHierarchyPath({ hierarchy, path, index })
           return (
             <Breadcrumb.Item>
-              <CustomLink to={paths[path]()}>{path}</CustomLink>
+              <CustomLink to={obj.path}>{obj.name}</CustomLink>
             </Breadcrumb.Item>
           )
         })}

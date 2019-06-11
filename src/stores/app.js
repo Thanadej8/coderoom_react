@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
 
 import { removeAuthToken } from '@utils/session'
+import Http from '@utils/api'
 
 export const logout = createAction('LOGOUT')
 export const fetchCurrentUser = createAction('FETCH_CURRENT_USER')

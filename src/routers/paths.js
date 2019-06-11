@@ -2,7 +2,7 @@ import pathToRegexp from 'path-to-regexp'
 import queryString from 'query-string'
 import { pick } from 'ramda'
 
-export const configs = [
+const configs = [
   { name: 'root', path: '' },
   { name: 'login', path: 'login' },
   { name: 'register', path: 'register' },
@@ -10,6 +10,7 @@ export const configs = [
   { name: 'member', path: 'member' },
   { name: 'memberProfile', path: 'member/profile' },
   { name: 'memberDashboard', path: 'member/dashboard' },
+  { name: 'memberCourses', path: 'member/courses/:id' },
 ]
 
 const prefix = ''
@@ -43,8 +44,16 @@ const getPath = (name, params = {}) => {
 }
 
 const paths = {}
+const regulars = {}
+
 routeConfigs.forEach(route => {
-  paths[route.name] = params => getPath(route.name, params)
+  const { name, pattern } = route
+  const regular = pathToRegexp(pattern)
+
+  paths[name] = params => getPath(name, params)
+  regulars[regular] = name
 })
+
+export const regularPaths = regulars
 
 export default paths
