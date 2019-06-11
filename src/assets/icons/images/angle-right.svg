@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="14px" viewBox="0 0 8 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>angle-right</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.7600088,12.6640625 L10.4475088,17.9765625 C10.0803213,18.34375 9.4865713,18.34375 9.12329005,17.9765625 L8.24047755,17.09375 C7.87329005,16.7265625 7.87329005,16.1328125 8.24047755,15.7695312 L12.0061025,12.0039062 L8.24047755,8.23828125 C7.87329005,7.87109375 7.87329005,7.27734375 8.24047755,6.9140625 L9.1193838,6.0234375 C9.4865713,5.65625 10.0803213,5.65625 10.4436025,6.0234375 L15.7561025,11.3359375 C16.1271963,11.703125 16.1271963,12.296875 15.7600088,12.6640625 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons/Solid/angle-right" transform="translate(-8.000000, -5.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="angle-right" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
