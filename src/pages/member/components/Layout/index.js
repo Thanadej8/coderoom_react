@@ -18,9 +18,6 @@ const Body = styled(PageContainer)`
     padding: 10px;
   }
 `
-const WrapperBreadcrumb = styled.div`
-  margin-bottom: 10px;
-`
 
 export default props => {
   const { children } = props
@@ -28,9 +25,7 @@ export default props => {
     <Wrapper>
       <Header />
       <Body>
-        <WrapperBreadcrumb>
-          <Breadcrumb />
-        </WrapperBreadcrumb>
+        <Breadcrumb />
         {children}
       </Body>
     </Wrapper>

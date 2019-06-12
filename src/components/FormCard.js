@@ -21,6 +21,7 @@ const TitlePage = styled.h2`
   font-weight: 300;
   text-align: center;
   margin-bottom: 20px;
+  color: #0a218f;
 `
 
 export default props => {

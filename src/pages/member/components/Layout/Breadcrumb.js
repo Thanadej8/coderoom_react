@@ -6,9 +6,12 @@ import { withRouter } from '@enhancers'
 import Icon from '@components/Icon'
 
 const HomeIcon = styled(Icon)`
-  color: ${props => (props.isFirst ? '#117167' : '#888888')};
+  color: ${props => (props.isFirst ? '#0a218f' : '#969696')};
   cursor: pointer;
   font-size: 18px;
+  &:hover {
+    color: #0a218f;
+  }
 `
 const CustomLink = styled(Link)`
   padding: 0 8px;
@@ -20,7 +23,7 @@ const CustomLink = styled(Link)`
   }
 `
 const ArrowRightIcon = styled(Icon)`
-  color: #888888;
+  color: #969696;
   font-size: 10px;
   padding: 0 8px;
 `
@@ -30,15 +33,19 @@ const WrapperHierarchy = styled.div`
   align-items: center;
 `
 const Wrapper = styled.div`
-  font-size: 18px;
-  padding: 8px;
-  background-color: #fff;
+  font-size: 16px;
+  padding: 5px 10px;
+  padding-left: 0px;
+  margin-bottom: 5px;
   display: flex;
   align-content: center;
   align-items: center;
 `
 const Name = styled.span`
-  color: ${props => (props.isend ? '#117167' : '#888888')};
+  color: ${props => (props.isEnd ? '#0a218f' : '#969696')};
+  &:hover {
+    color: #0a218f;
+  }
 `
 
 const getHierarchy = pathname => {
@@ -56,6 +63,10 @@ const getHierarchy = pathname => {
       }
     })
   return hierarchy
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 export default withRouter(props => {
@@ -82,7 +93,7 @@ export default withRouter(props => {
           return (
             <WrapperHierarchy key={`${name}_${index}`}>
               <CustomLink to={path}>
-                <Name isEnd={index === hierarchys.length - 1}>{name}</Name>
+                <Name isEnd={index === hierarchys.length - 1}>{capitalizeFirstLetter(name)}</Name>
               </CustomLink>
               {index < hierarchys.length - 1 ? <ArrowRightIcon name="angle-right" /> : null}
             </WrapperHierarchy>

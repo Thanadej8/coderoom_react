@@ -10,7 +10,7 @@ const configs = [
   { name: 'member', path: 'member' },
   { name: 'memberProfile', path: 'member/profile' },
   { name: 'memberDashboard', path: 'member/dashboard' },
-  { name: 'memberCourses', path: 'member/courses/:id' },
+  { name: 'memberCourses', path: 'member/courses/:course_id' },
 ]
 
 const prefix = ''
@@ -28,9 +28,10 @@ const getPath = (name, params = {}) => {
   const route = routeConfigs.find(r => r.name === name)
   if (!route) throw new Error('Not found path name')
   const pattern = route.pattern
+
   const toPath = pathToRegexp.compile(pattern)
 
-  const path = toPath(params)
+  const path = Object.keys(params) >= 1 ? toPath(params) : pattern
 
   const routeMatched = /:(\w+)/.exec(pattern)
   const routeKeys = routeMatched === null ? [] : [routeMatched[1]]
@@ -44,16 +45,8 @@ const getPath = (name, params = {}) => {
 }
 
 const paths = {}
-const regulars = {}
-
 routeConfigs.forEach(route => {
-  const { name, pattern } = route
-  const regular = pathToRegexp(pattern)
-
-  paths[name] = params => getPath(name, params)
-  regulars[regular] = name
+  paths[route.name] = params => getPath(route.name, params)
 })
-
-export const regularPaths = regulars
 
 export default paths

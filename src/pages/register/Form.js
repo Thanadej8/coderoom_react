@@ -48,12 +48,12 @@ export default reduxForm({ form: 'registerForm', validate })(props => {
     <Form onSubmit={handleSubmit}>
       <FormRow>
         <CustomFormCol>
-          <Label>Username :</Label>
+          <Label>email :</Label>
           <Field
-            name="username"
+            name="email"
             component={Fields.Text}
-            placeholder="Username"
-            validate={[isRequired]}
+            placeholder="Only silpakorn email"
+            validate={[isRequired, isEmail, isSilpakornEmail]}
           />
         </CustomFormCol>
       </FormRow>
@@ -106,17 +106,7 @@ export default reduxForm({ form: 'registerForm', validate })(props => {
           />
         </CustomFormCol>
       </FormRow>
-      <FormRow>
-        <CustomFormCol>
-          <Label>email :</Label>
-          <Field
-            name="email"
-            component={Fields.Text}
-            placeholder="Only silpakorn email"
-            validate={[isRequired, isEmail, isSilpakornEmail]}
-          />
-        </CustomFormCol>
-      </FormRow>
+
       <WrapperSubmitButton>
         <OvalButton type="primary" htmlType="submit" loading={submitting} disabled={submitting}>
           Register

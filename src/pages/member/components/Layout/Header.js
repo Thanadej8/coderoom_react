@@ -31,7 +31,7 @@ const Container = styled(PageContainer)`
 const Logo = styled.h1`
   font-size: 28px;
   font-weight: 400;
-  color: #117167;
+  color: #0a218f;
   cursor: pointer;
 `
 const WrapperProfile = styled.div`
@@ -79,8 +79,8 @@ const ProfileActions = styled.ul`
   padding: ${props => (props.isOpen ? '10px' : '0px')};
   transition: ${props =>
     props.isOpen
-      ? 'max-height 0.5s, padding 0.2s ease-out'
-      : 'max-height 0.5s, padding 0.2s, opacity 0.2s  ease-in'};
+      ? 'max-height 0.2s, padding 0.2s  ease-out'
+      : 'max-height 0.2s, padding 0.2s, opacity 0.1s  ease-in'};
   ${props => props.theme.media('tablet')} {
     max-height: ${props => (props.isOpen ? (props.isAdmin ? '150px' : '105px') : '0px')};
     position: absolute;
@@ -89,6 +89,7 @@ const ProfileActions = styled.ul`
   }
 `
 const Action = styled.li`
+  display: ${props => (props.isOpen ? 'block' : 'none')};
   padding: 10px;
   text-align: center;
   list-style-type: none;
@@ -118,7 +119,9 @@ const Profile = withRouter(props => {
         className.indexOf('ProfileImage') !== -1 ||
         className.indexOf('ProfileName') !== -1 ||
         className.indexOf('ProfileActions') !== -1 ||
-        className.indexOf('Action') !== -1)
+        className.indexOf('Action') !== -1 ||
+        className.indexOf('AngleDownIcon') !== -1)
+
     if (!clickProfile) {
       setIsOpen(false)
     }
@@ -147,11 +150,13 @@ const Profile = withRouter(props => {
         <AngleDownIcon name="angle-down" />
       </ProfileDetail>
       <ProfileActions isOpen={isOpen} isAdmin={isAdmin}>
-        <Action>
+        <Action isOpen={isOpen}>
           <Link to={paths.memberProfile()}>Profile</Link>
         </Action>
-        <Action>Switch to {isAdmin ? 'Teacher' : 'Admin'}</Action>
-        <Action onClick={handleLogout}>Logout</Action>
+        <Action isOpen={isOpen}>Switch to {isAdmin ? 'Teacher' : 'Admin'}</Action>
+        <Action isOpen={isOpen} onClick={handleLogout}>
+          Logout
+        </Action>
       </ProfileActions>
     </WrapperProfile>
   )
@@ -160,7 +165,9 @@ const Profile = withRouter(props => {
 export default props => (
   <Header>
     <Container>
-      <Logo>CodeRoom</Logo>
+      <Link to={paths.member()}>
+        <Logo>CodeRoom</Logo>
+      </Link>
       <Profile />
     </Container>
   </Header>
