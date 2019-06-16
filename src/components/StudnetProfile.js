@@ -18,7 +18,7 @@ const WrapperNameStudnetCode = styled.div`
 `
 const Name = styled.p`
   font-size: 20px;
-  color: ${props => props.theme.minorColor};
+  color: ${props => props.theme.primaryColor};
   font-weight: 400;
   ${props => props.theme.media('tablet')} {
     font-size: 24px;
@@ -38,8 +38,8 @@ const WrapperCourse = styled.div`
 `
 const CourseTitle = styled.p`
   font-size: 16px;
-  color: #000;
-  font-weight: 400;
+  color: ${props => props.theme.minorColor};
+  font-weight: 500;
   margin-bottom: 15px;
   ${props => props.theme.media('tablet')} {
     font-size: 18px;

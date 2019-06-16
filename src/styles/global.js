@@ -176,4 +176,7 @@ injectGlobal`
   .ant-calendar-picker-container {
     z-index: 99999;
   }
+  .ant-tabs {
+    overflow: unset;
+  }
 `

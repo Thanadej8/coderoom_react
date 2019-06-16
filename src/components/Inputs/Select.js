@@ -18,7 +18,7 @@ const styles = {
   }),
   menu: (base, state) => ({
     ...base,
-    zIndex: 6,
+    zIndex: 10,
   }),
 }
 

@@ -20,7 +20,7 @@ const ProgressBar = styled.div`
   position: relative;
   width: 100%;
   height: 5px;
-  background-color: #dde1e3;
+  background-color: #f1f1f1;
 `
 const Progress = styled.div`
   position: absolute;
@@ -33,10 +33,10 @@ const Progress = styled.div`
 `
 
 export default props => {
-  const { name = '', percent = 50 } = props
+  const { name = '', percent = 50, className } = props
 
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <Header>
         <Text>Progress {name}</Text>
         <Text>{percent}%</Text>

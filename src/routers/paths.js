@@ -11,8 +11,16 @@ const configs = [
   { name: 'memberProfile', path: 'member/profile' },
   { name: 'memberDashboard', path: 'member/dashboard' },
   {
+    name: 'memberDashboardCourses',
+    path: 'member/courses',
+  },
+  {
     name: 'memberCourses',
     path: 'member/courses/:course_id',
+  },
+  {
+    name: 'courseMembers',
+    path: 'member/courses/:course_id/members',
   },
 ]
 

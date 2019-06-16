@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useTitlePage } from '@hooks'
 import { paths } from '@routers'
 import CourseCard from '@components/CourseCard'
-import Layout from '../components/Layout'
+import Layout from '@components/MemberLayout'
 import PageTitle from '@components/PageTitle'
 
 import CourseJoinModal from './components/CourseJoinModal'

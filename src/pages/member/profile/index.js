@@ -1,15 +1,11 @@
 import React from 'react'
-import styled from '@emotion/styled'
-import { Tabs as AntdTabs } from 'antd'
 
 import { useTitlePage } from '@hooks'
-import Tabs from '@components/Tabs'
+import Tabs, { TabPane } from '@components/Tabs'
 
-import Layout from '../components/Layout'
+import Layout from '@components/MemberLayout'
 import Management from './Management'
 import Information from './Information'
-
-const { TabPane } = AntdTabs
 
 export default props => {
   useTitlePage('profile')

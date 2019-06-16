@@ -29,6 +29,8 @@ const Tabs = styled(AntdTabs)`
   }
 `
 
+export const TabPane = AntdTabs.TabPane
+
 export default props => {
   const { defaultActiveKey, children, onChange, className, tabPosition } = props
   return (

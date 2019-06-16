@@ -9,7 +9,7 @@ import { logout } from '@stores/app'
 import { withRouter } from '@enhancers'
 import { paths } from '@routers'
 
-import PageContainer from '../PageContainer'
+import PageContainer from './PageContainer'
 
 const Header = styled.header`
   width: 100%;

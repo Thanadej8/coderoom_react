@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 
 export const can = (currentUser, requiredRole) => {
-  const { role } = currentUser
-  if (requiredRole !== role) return false
+  // TODO
+  // if (requiredRole !== currentUser.role) return false
   return true
 }
 

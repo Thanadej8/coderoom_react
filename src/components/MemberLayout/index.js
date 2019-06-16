@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 import Header from './Header'
-import PageContainer from '../PageContainer'
+import PageContainer from './PageContainer'
 import Breadcrumb from './Breadcrumb'
 
 const Wrapper = styled.div`
