@@ -150,6 +150,16 @@ injectGlobal`
       padding: 0;
       color: #000;
   }
+  
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 18px;
+  }
 
   .ReactModal__Body--open {
     overflow: hidden;

@@ -13,10 +13,15 @@ const media = device => {
   }
 }
 
+const primaryColor = '#0a218f'
+const minorColor = '#004245'
+
 const commonStyled = {
   majorFont: 'kanit',
   minorFont: 'maitree',
   media,
+  primaryColor,
+  minorColor,
 }
 
 export default role => {

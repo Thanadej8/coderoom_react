@@ -18,7 +18,7 @@ const WrapperNameStudnetCode = styled.div`
 `
 const Name = styled.p`
   font-size: 20px;
-  color: #0a218f;
+  color: ${props => props.theme.minorColor};
   font-weight: 400;
   ${props => props.theme.media('tablet')} {
     font-size: 24px;

@@ -14,8 +14,11 @@ const Wrapper = styled.div`
 const Body = styled(PageContainer)`
   display: flex;
   flex-direction: column;
-  ${props => props.theme.media('computer')} {
-    padding: 10px;
+  padding: 10px;
+  padding-top: 70px;
+  ${props => props.theme.media('tablet')} {
+    padding: 20px;
+    padding-top: 80px;
   }
 `
 

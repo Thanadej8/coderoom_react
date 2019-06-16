@@ -1,10 +1,9 @@
-import React from 'react'
 import styled from '@emotion/styled'
 
-export const TitlePage = styled.h2`
+export default styled.h2`
   font-size: 32px;
   font-weight: 300;
   text-align: center;
   margin-bottom: 20px;
-  color: #0a218f;
+  color: ${props => props.theme.minorColor};
 `

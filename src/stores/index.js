@@ -3,11 +3,13 @@ import { reducer as reduxFormReducer } from 'redux-form'
 
 import app from './app'
 import courses from './courses'
+import models from './modals'
 
 const reducers = combineReducers({
+  form: reduxFormReducer,
   app,
   courses,
-  form: reduxFormReducer,
+  models,
 })
 
 export default createStore(reducers)

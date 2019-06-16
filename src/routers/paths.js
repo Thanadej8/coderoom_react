@@ -10,7 +10,10 @@ const configs = [
   { name: 'member', path: 'member' },
   { name: 'memberProfile', path: 'member/profile' },
   { name: 'memberDashboard', path: 'member/dashboard' },
-  { name: 'memberCourses', path: 'member/courses/:course_id' },
+  {
+    name: 'memberCourses',
+    path: 'member/courses/:course_id',
+  },
 ]
 
 const prefix = ''
@@ -31,7 +34,7 @@ const getPath = (name, params = {}) => {
 
   const toPath = pathToRegexp.compile(pattern)
 
-  const path = Object.keys(params) >= 1 ? toPath(params) : pattern
+  const path = toPath(params)
 
   const routeMatched = /:(\w+)/.exec(pattern)
   const routeKeys = routeMatched === null ? [] : [routeMatched[1]]
@@ -44,9 +47,13 @@ const getPath = (name, params = {}) => {
   return `${path}?${query}`
 }
 
+const rawPatterns = {}
 const paths = {}
 routeConfigs.forEach(route => {
   paths[route.name] = params => getPath(route.name, params)
+  rawPatterns[route.name] = () => route.pattern
 })
+
+export const patterns = { ...rawPatterns }
 
 export default paths

@@ -29,7 +29,7 @@ const Progress = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #0a218f;
+  background-color: ${props => props.theme.primaryColor};
 `
 
 export default props => {

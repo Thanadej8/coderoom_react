@@ -18,6 +18,7 @@ const Header = styled.header`
   padding: 10px;
   box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  position: fixed;
 `
 const Container = styled(PageContainer)`
   display: flex;
@@ -31,7 +32,7 @@ const Container = styled(PageContainer)`
 const Logo = styled.h1`
   font-size: 28px;
   font-weight: 400;
-  color: #0a218f;
+  color: ${props => props.theme.primaryColor};
   cursor: pointer;
 `
 const WrapperProfile = styled.div`
@@ -68,9 +69,10 @@ const AngleDownIcon = styled(Icon)`
 `
 const ProfileActions = styled.ul`
   position: fixed;
-  top: 63px;
+  top: 61px;
   right: 0;
   padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px;
   background-color: #fff;
   width: 100vw;
   z-index: 1;

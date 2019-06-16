@@ -23,7 +23,7 @@ const Tabs = styled(AntdTabs)`
     color: #000;
   }
   .ant-tabs-ink-bar {
-    background-color: #0a218f;
+    background-color: ${props => props.theme.primaryColor};
     height: 3px;
     z-index: 0;
   }

@@ -15,7 +15,11 @@ const CourseMode = styled.p`
 `
 const CourseName = styled.p`
   font-size: 16px;
-  height: 50px;
+  margin-bottom: 20px;
+  ${props => props.theme.media('tablet')} {
+    margin-bottom: 0px;
+    height: 60px;
+  }
 `
 
 export default props => {

@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
+import PageTitle from '@components/PageTitle'
+
 const Card = styled.div`
   width: 100%;
   padding: 20px 15px;
@@ -16,12 +18,9 @@ const Card = styled.div`
   }
 `
 
-const TitlePage = styled.h2`
+const TitlePage = styled(PageTitle)`
   font-size: 32px;
   font-weight: 300;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #0a218f;
 `
 
 export default props => {

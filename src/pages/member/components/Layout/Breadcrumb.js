@@ -6,11 +6,11 @@ import { withRouter } from '@enhancers'
 import Icon from '@components/Icon'
 
 const HomeIcon = styled(Icon)`
-  color: ${props => (props.isFirst ? '#0a218f' : '#969696')};
+  color: ${props => (props.isFirst ? props.theme.primaryColor : '#969696')};
   cursor: pointer;
   font-size: 18px;
   &:hover {
-    color: #0a218f;
+    color: ${props => props.theme.primaryColor};
   }
 `
 const CustomLink = styled(Link)`
@@ -42,9 +42,9 @@ const Wrapper = styled.div`
   align-items: center;
 `
 const Name = styled.span`
-  color: ${props => (props.isEnd ? '#0a218f' : '#969696')};
+  color: ${props => (props.isEnd ? props.theme.primaryColor : '#969696')};
   &:hover {
-    color: #0a218f;
+    color: ${props => props.theme.primaryColor};
   }
 `
 

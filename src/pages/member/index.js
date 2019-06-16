@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import { ProtectedRoute, PageLoadable, paths } from '@routers'
+import { ProtectedRoute, PageLoadable, patterns } from '@routers'
 import Page404 from '@components/Page404'
 
 const AsyncMemberDashboardPage = PageLoadable({ loader: () => import('@pages/member/dashboard') })
@@ -12,11 +12,11 @@ export default props => (
   <Switch>
     <ProtectedRoute
       exact
-      path={[paths.member(), paths.memberDashboard()]}
+      path={[patterns.member(), patterns.memberDashboard()]}
       component={AsyncMemberDashboardPage}
     />
-    <ProtectedRoute exact path={paths.memberProfile()} component={AsyncMemberProfilePage} />
-    <ProtectedRoute exact path={paths.memberCourses()} component={AsyncMemberCoursesPage} />
+    <ProtectedRoute exact path={patterns.memberProfile()} component={AsyncMemberProfilePage} />
+    <ProtectedRoute exact path={patterns.memberCourses()} component={AsyncMemberCoursesPage} />
     <Route component={Page404} />
   </Switch>
 )
