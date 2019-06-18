@@ -8,15 +8,15 @@ export default handleActions(
     [
       openModal,
       (state, action) => {
-        const { modelId, modelProps } = action.payload
-        return { ...state, [modelId]: { isOpen: true, ...modelProps } }
+        const { modalId, modelProps } = action.payload
+        return { ...state, [modalId]: { isOpen: true, ...modelProps } }
       },
     ],
     [
       closeModal,
       (state, action) => {
-        const { modelId } = action.payload
-        return { ...state, [modelId]: { isOpen: false } }
+        const { modalId } = action.payload
+        return { ...state, [modalId]: { isOpen: false } }
       },
     ],
   ]),

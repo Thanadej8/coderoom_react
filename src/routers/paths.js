@@ -16,11 +16,19 @@ const configs = [
   },
   {
     name: 'memberCourses',
-    path: 'member/courses/:course_id',
+    path: 'member/courses/:courseId',
   },
   {
     name: 'courseMembers',
-    path: 'member/courses/:course_id/members',
+    path: 'member/courses/:courseId/members',
+  },
+  {
+    name: 'courseDashboardLessons',
+    path: 'member/courses/:courseId/lessons',
+  },
+  {
+    name: 'courseLessons',
+    path: 'member/courses/:courseId/lessons/:lessonId',
   },
 ]
 
@@ -41,11 +49,13 @@ const getPath = (name, params = {}) => {
   const pattern = route.pattern
 
   const toPath = pathToRegexp.compile(pattern)
-
   const path = toPath(params)
 
-  const routeMatched = /:(\w+)/.exec(pattern)
-  const routeKeys = routeMatched === null ? [] : [routeMatched[1]]
+  const routeMatched = pathToRegexp.parse(pattern)
+  const routeKeys =
+    routeMatched === null
+      ? []
+      : routeMatched.filter(route => route instanceof Object).map(route => route.name)
   const queryKeys = Object.keys(params).filter(key => !routeKeys.includes(key))
 
   if (queryKeys.length === 0) return path

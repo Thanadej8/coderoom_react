@@ -43,22 +43,22 @@ export default props => {
     <Layout>
       <Title>Courses</Title>
       <WrapperCourses>
-        <CourseLink to={paths.memberCourses({ course_id: 1 })}>
+        <CourseLink to={paths.memberCourses({ courseId: 1 })}>
           <CourseCard />
         </CourseLink>
-        <CourseLink to={paths.memberCourses({ course_id: 1 })}>
-          <CourseCard />
-        </CourseLink>
-
-        <CourseLink to={paths.memberCourses({ course_id: 1 })}>
+        <CourseLink to={paths.memberCourses({ courseId: 1 })}>
           <CourseCard />
         </CourseLink>
 
-        <CourseLink to={paths.memberCourses({ course_id: 1 })}>
+        <CourseLink to={paths.memberCourses({ courseId: 1 })}>
           <CourseCard />
         </CourseLink>
 
-        <CourseLink to={paths.memberCourses({ course_id: 1 })}>
+        <CourseLink to={paths.memberCourses({ courseId: 1 })}>
+          <CourseCard />
+        </CourseLink>
+
+        <CourseLink to={paths.memberCourses({ courseId: 1 })}>
           <CourseCard />
         </CourseLink>
       </WrapperCourses>

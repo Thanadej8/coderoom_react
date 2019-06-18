@@ -38,7 +38,7 @@ const WrapperCourse = styled.div`
 `
 const CourseTitle = styled.p`
   font-size: 16px;
-  color: ${props => props.theme.minorColor};
+  color: ${props => props.theme.primaryColor};
   font-weight: 500;
   margin-bottom: 15px;
   ${props => props.theme.media('tablet')} {

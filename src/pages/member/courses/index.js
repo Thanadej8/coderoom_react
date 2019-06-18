@@ -4,16 +4,18 @@ import { Link } from 'react-router-dom'
 
 import { paths } from '@routers'
 import ProgressBar from '@components/ProgressBar'
-import { OvalButton } from '@components/buttons'
+import { OvalButton, AddCircleButton } from '@components/buttons'
 import Layout from '@components/MemberLayout'
 import Tabs, { TabPane } from '@components/Tabs'
 import { Authorized } from '@utils/ability'
 import Inputs from '@components/Inputs'
 import { Row, Col } from '@components/flex'
+import ActionsTopic from '@components/ActionsTopic'
+import LessonCard from '@components/LessonCard'
 
 const CouseTitle = styled.h2`
-  font-weight: 500;
-  color: ${props => props.theme.minorColor};
+  font-weight: 400;
+  color: ${props => props.theme.primaryColor};
 `
 
 const CourseCard = styled.div`
@@ -61,7 +63,7 @@ const DetailBox = styled.div`
   font-weight: 300;
   padding: 5px 0;
   width: 100%;
-  background-color: #dde1e3;
+  background-color: #f1f1f1;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -141,9 +143,12 @@ const ResetCourseCodeButton = styled(OvalButton)`
   width: 200px;
 `
 const ManagementRow = styled(Row)`
+  flex-direction: row;
   margin-bottom: 10px;
   &:nth-last-of-type(1) {
     margin-bottom: 0px;
+  }
+  ${props => props.theme.media('tablet')} {
   }
 `
 const ManagementCol = styled(Col)`
@@ -155,9 +160,29 @@ const ManagementCol = styled(Col)`
   &:nth-last-of-type(1) {
     justify-content: flex-start;
   }
+  ${props => props.theme.media('tablet')} {
+  }
 `
 const WrapperSelect = styled.div`
   width: 150px;
+`
+const WrapperActionTopic = styled.div`
+  margin: 10px 0;
+`
+const WrapperActionButton = styled.div`
+  margin: 0 5px;
+  &:nth-last-of-type(1) {
+    margin: 0;
+  }
+`
+const WrapperLessonsCard = styled.div`
+  display: grid;
+  grid-template-columns: 100%;
+  grid-gap: 10px;
+  margin-bottom: 10px;
+  ${props => props.theme.media('tablet')} {
+    grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+  }
 `
 
 export default props => {
@@ -168,7 +193,7 @@ export default props => {
         <WrapperCourseTitle>
           <CouseTitle>{courseName}</CouseTitle>
           <WrapperViewMemberButton>
-            <Link to={paths.courseMembers({ course_id: 1 })}>
+            <Link to={paths.courseMembers({ courseId: 1 })}>
               <OvalButton>View Members</OvalButton>
             </Link>
           </WrapperViewMemberButton>
@@ -225,8 +250,18 @@ export default props => {
       </CourseCard>
       <Authorized requiredRole="teacher">
         <WrapperTabs>
-          <Tabs defaultActiveKey="management">
-            <TabPane tab="Management" key="management">
+          <Tabs defaultActiveKey="courseCode">
+            <TabPane tab="Course Code" key="courseCode">
+              <TabCard>
+                <WrapperCourseCode>
+                  <CourseCode>
+                    CODE: <span>6AB2SD</span>
+                  </CourseCode>
+                  <ResetCourseCodeButton type="danger">Reset Course Code</ResetCourseCodeButton>
+                </WrapperCourseCode>
+              </TabCard>
+            </TabPane>
+            <TabPane tab="Settings" key="settings">
               <TabCard>
                 <ManagementRow>
                   <ManagementCol>Course Login</ManagementCol>
@@ -258,19 +293,44 @@ export default props => {
                 </ManagementRow>
               </TabCard>
             </TabPane>
-            <TabPane tab="Course Code" key="courseCode">
-              <TabCard>
-                <WrapperCourseCode>
-                  <CourseCode>
-                    CODE: <span>6AB2SD</span>
-                  </CourseCode>
-                  <ResetCourseCodeButton type="danger">Reset Course Code</ResetCourseCodeButton>
-                </WrapperCourseCode>
-              </TabCard>
-            </TabPane>
           </Tabs>
         </WrapperTabs>
       </Authorized>
+      <WrapperActionTopic>
+        <ActionsTopic name="Announcements">
+          <WrapperActionButton>
+            <AddCircleButton />
+          </WrapperActionButton>
+        </ActionsTopic>
+      </WrapperActionTopic>
+
+      <WrapperActionTopic>
+        <ActionsTopic name="Lessons">
+          <WrapperActionButton>
+            <OvalButton>Sort Lessons</OvalButton>
+          </WrapperActionButton>
+          <WrapperActionButton>
+            <AddCircleButton />
+          </WrapperActionButton>
+        </ActionsTopic>
+      </WrapperActionTopic>
+      <WrapperLessonsCard>
+        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
+          <LessonCard />
+        </Link>
+        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
+          <LessonCard />
+        </Link>
+        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
+          <LessonCard />
+        </Link>
+        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
+          <LessonCard />
+        </Link>
+        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
+          <LessonCard />
+        </Link>
+      </WrapperLessonsCard>
     </Layout>
   )
 }

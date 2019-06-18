@@ -5,5 +5,5 @@ export default styled.h2`
   font-weight: 300;
   text-align: center;
   margin-bottom: 20px;
-  color: ${props => props.theme.minorColor};
+  color: ${props => props.theme.primaryColor};
 `

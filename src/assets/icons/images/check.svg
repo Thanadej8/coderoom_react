@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="16px" viewBox="0 0 20 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>check</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M8.79289063,19.1642017 L2.29289063,12.6642017 C1.90238281,12.2736938 1.90238281,11.6405298 2.29289063,11.2499829 L3.70707031,9.83576416 C4.09757813,9.44521729 4.73078125,9.44521729 5.12128906,9.83576416 L9.5,14.214436 L18.8787109,4.83576416 C19.2692188,4.44525635 19.9024219,4.44525635 20.2929297,4.83576416 L21.7071094,6.24998291 C22.0976172,6.64049072 22.0976172,7.27365479 21.7071094,7.66420166 L10.2071094,19.1642407 C9.8165625,19.5547485 9.18339844,19.5547485 8.79289063,19.1642017 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons/Solid/check" transform="translate(-2.000000, -4.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="check" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
