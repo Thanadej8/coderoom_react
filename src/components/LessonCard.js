@@ -23,11 +23,12 @@ const CourseName = styled.p`
 `
 
 export default props => {
+  const { name, mode, progress } = props
   return (
     <Wrapper>
-      <CourseMode>Lesson Mode : Learning</CourseMode>
-      <CourseName>การใช้ TreeMap, HashMap</CourseName>
-      <ProgressBar name="Lesson" persent={20} />
+      <CourseMode>Lesson Mode : {mode}</CourseMode>
+      <CourseName>{name}</CourseName>
+      <ProgressBar name="Lesson" persent={progress} />
     </Wrapper>
   )
 }

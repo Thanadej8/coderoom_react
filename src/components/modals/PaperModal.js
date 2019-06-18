@@ -46,7 +46,7 @@ export default props => {
     >
       <Paper>
         <WrapperCloseIcon>
-          <CloseIcon name="times-solid" onClick={() => closeModal()} />
+          <CloseIcon name="times" onClick={() => closeModal()} />
         </WrapperCloseIcon>
         {children}
       </Paper>

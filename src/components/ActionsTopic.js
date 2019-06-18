@@ -28,6 +28,15 @@ const WrapperActions = styled.div`
   ${props => props.theme.media('tablet')} {
   }
 `
+const WrapperChildren = styled.div`
+  display: flex;
+  align-content: center;
+  align-items: center;
+`
+const ActionTitle = styled.p`
+  font-weight: 300;
+  margin-right: 5px;
+`
 
 export default props => {
   const { name, children } = props
@@ -36,7 +45,10 @@ export default props => {
     <Wrapper>
       <TopicName>{name}</TopicName>
       <Authorized requiredRole="teacher">
-        <WrapperActions>{children}</WrapperActions>
+        <WrapperActions>
+          <ActionTitle>Managements :</ActionTitle>
+          <WrapperChildren>{children}</WrapperChildren>
+        </WrapperActions>
       </Authorized>
     </Wrapper>
   )

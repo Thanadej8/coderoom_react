@@ -9,6 +9,7 @@ import { PageLoadable } from '@routers'
 
 import '@styles/global'
 import '@assets/icons/css/Glyphter.css'
+import 'moment/locale/th'
 
 const AsyncPages = PageLoadable({ loader: () => import('@pages') })
 

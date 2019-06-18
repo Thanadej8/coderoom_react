@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 
 import { paths } from '@routers'
 import ProgressBar from '@components/ProgressBar'
-import { OvalButton, AddCircleButton } from '@components/buttons'
+import { OvalButton } from '@components/buttons'
 import Layout from '@components/MemberLayout'
 import Tabs, { TabPane } from '@components/Tabs'
 import { Authorized } from '@utils/ability'
 import Inputs from '@components/Inputs'
 import { Row, Col } from '@components/flex'
-import ActionsTopic from '@components/ActionsTopic'
-import LessonCard from '@components/LessonCard'
+import AnnoucmentSection from './components/AnnoucementSection'
+import LessonsSection from './components/LessonsSection'
 
 const CouseTitle = styled.h2`
   font-weight: 400;
@@ -166,27 +166,10 @@ const ManagementCol = styled(Col)`
 const WrapperSelect = styled.div`
   width: 150px;
 `
-const WrapperActionTopic = styled.div`
-  margin: 10px 0;
-`
-const WrapperActionButton = styled.div`
-  margin: 0 5px;
-  &:nth-last-of-type(1) {
-    margin: 0;
-  }
-`
-const WrapperLessonsCard = styled.div`
-  display: grid;
-  grid-template-columns: 100%;
-  grid-gap: 10px;
-  margin-bottom: 10px;
-  ${props => props.theme.media('tablet')} {
-    grid-template-columns: calc(50% - 10px) calc(50% - 10px);
-  }
-`
 
 export default props => {
   const { courseName = 'Research Method Summer I' } = props
+
   return (
     <Layout>
       <CourseCard>
@@ -296,41 +279,8 @@ export default props => {
           </Tabs>
         </WrapperTabs>
       </Authorized>
-      <WrapperActionTopic>
-        <ActionsTopic name="Announcements">
-          <WrapperActionButton>
-            <AddCircleButton />
-          </WrapperActionButton>
-        </ActionsTopic>
-      </WrapperActionTopic>
-
-      <WrapperActionTopic>
-        <ActionsTopic name="Lessons">
-          <WrapperActionButton>
-            <OvalButton>Sort Lessons</OvalButton>
-          </WrapperActionButton>
-          <WrapperActionButton>
-            <AddCircleButton />
-          </WrapperActionButton>
-        </ActionsTopic>
-      </WrapperActionTopic>
-      <WrapperLessonsCard>
-        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
-          <LessonCard />
-        </Link>
-        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
-          <LessonCard />
-        </Link>
-        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
-          <LessonCard />
-        </Link>
-        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
-          <LessonCard />
-        </Link>
-        <Link to={paths.courseLessons({ courseId: 1, lessonId: 1 })}>
-          <LessonCard />
-        </Link>
-      </WrapperLessonsCard>
+      <AnnoucmentSection />
+      <LessonsSection />
     </Layout>
   )
 }
