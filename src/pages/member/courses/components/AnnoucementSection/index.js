@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { useStore } from 'react-redux'
 
 import { useModalHandlers } from '@hooks'
 import ActionsTopic from '@components/ActionsTopic'
 import AnnoucementCard from '@components/AnnoucementCard'
-import { AddCircleButton, AntdButton } from '@components/buttons'
-import Icon from '@components/Icon'
+import { AddCircleButton } from '@components/buttons'
 import ActionsCard from '@components/ActionsCard'
 
 import AnnoucementModal from './components/AnnoucementModal'
+import AnnoucementFormModal from './components/AnnoucementFormModal'
 
 const WrapperActionTopic = styled.div`
   margin: 10px 0;
@@ -31,37 +32,6 @@ const WrapperCards = styled.div`
 const Card = styled(AnnoucementCard)`
   cursor: pointer;
 `
-const WrapperCard = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-const WrapperActions = styled.div`
-  background-color: #fff;
-  margin-top: 1px;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: flex-end;
-  align-content: center;
-  align-items: center;
-`
-const ActionTitle = styled.p`
-  font-weight: 200;
-  margin-right: 5px;
-`
-const WrapperActionIcons = styled.div`
-  display: flex;
-  align-content: center;
-  align-items: center;
-`
-const ActionButton = styled(AntdButton)`
-  i {
-    font-size: 12px;
-  }
-  margin-right: 10px;
-  &:nth-last-of-type(1) {
-    margin-right: 0px;
-  }
-`
 
 export default props => {
   const annoucements = [
@@ -70,26 +40,42 @@ export default props => {
     { title: 'เทส Annoucement นะจ๊ะ' },
     { title: 'เทส Annoucement นะจ๊ะ' },
   ]
+  const annoucmentFormModal = useModalHandlers('annoucmentFormModal')
   return (
     <>
       <WrapperActionTopic>
         <ActionsTopic name="Announcements">
           <WrapperActionButton>
-            <AddCircleButton />
+            <AddCircleButton
+              onClick={() =>
+                annoucmentFormModal.openModal({
+                  mode: 'create',
+                })
+              }
+            />
           </WrapperActionButton>
         </ActionsTopic>
       </WrapperActionTopic>
       <WrapperCards>
         {annoucements &&
           annoucements.length !== 0 &&
-          annoucements.map(annoucement => {
-            const { openModal } = useModalHandlers('viewAnnoucementModal')
+          annoucements.map((annoucement, index) => {
+            const viewAnnoucementModal = useModalHandlers('viewAnnoucementModal')
             return (
-              <ActionsCard handleEditButtonClick={() => {}} handleDeleteButtonClick={() => {}}>
+              <ActionsCard
+                key={`${annoucement.title}_${index}`}
+                handleEditButtonClick={() => {
+                  annoucmentFormModal.openModal({
+                    annoucement,
+                    mode: 'edit',
+                  })
+                }}
+                handleDeleteButtonClick={() => {}}
+              >
                 <Card
                   title={annoucement.title}
                   onClick={() =>
-                    openModal({
+                    viewAnnoucementModal.openModal({
                       ...annoucement,
                     })
                   }
@@ -98,6 +84,7 @@ export default props => {
             )
           })}
       </WrapperCards>
+      <AnnoucementFormModal />
       <AnnoucementModal />
     </>
   )

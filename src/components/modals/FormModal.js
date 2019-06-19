@@ -1,9 +1,11 @@
 import React from 'react'
-import { css } from 'emotion'
 import styled from '@emotion/styled'
+import { css } from 'emotion'
+
+import PageTitle from '@components/PageTitle'
+import Icon from '@components/Icon'
 
 import Modal from './Modal'
-import Icon from '@components/Icon'
 
 const className = css`
   padding: 10px;
@@ -24,17 +26,26 @@ const className = css`
 const overlayClassName = css`
   overflow-y: auto;
 `
-const Paper = styled.div`
-  background-color: #fff;
+
+const FormCard = styled.div`
+  width: 100%;
   padding: 20px;
-  width: 600px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  ${props => props.theme.media('tablet')} {
+    width: 500px;
+  }
 `
-const WrapperCloseIcon = styled.div`
-  position: absolute;
-  right: 20px;
+const Title = styled(PageTitle)`
+  font-size: 20px;
 `
+
 const CloseIcon = styled(Icon)`
+  position: absolute;
+  top: 20px;
+  right: 20px;
   color: #000;
   cursor: pointer;
   opacity: 0.5;
@@ -44,7 +55,7 @@ const CloseIcon = styled(Icon)`
 `
 
 export default props => {
-  const { isOpen, closeModal, children } = props
+  const { isOpen, closeModal, title, children } = props
   return (
     <Modal
       isOpen={isOpen}
@@ -53,12 +64,11 @@ export default props => {
       overlayClassName={overlayClassName}
       shouldCloseOnOverlayClick={true}
     >
-      <Paper>
-        <WrapperCloseIcon>
-          <CloseIcon name="times" onClick={() => closeModal()} />
-        </WrapperCloseIcon>
+      <FormCard>
+        <CloseIcon name="times" onClick={() => closeModal()} />
+        <Title>{title}</Title>
         {children}
-      </Paper>
+      </FormCard>
     </Modal>
   )
 }

@@ -48,9 +48,13 @@ export default props => {
       <WrapperCards>
         {lessons &&
           lessons.length !== 0 &&
-          lessons.map(lesson => {
+          lessons.map((lesson, index) => {
             return (
-              <ActionsCard handleEditButtonClick={() => {}} handleDeleteButtonClick={() => {}}>
+              <ActionsCard
+                key={`${lessons.name}_${index}`}
+                handleEditButtonClick={() => {}}
+                handleDeleteButtonClick={() => {}}
+              >
                 <Link to={paths.courseLessons({ courseId: 1, lessonId: lesson.id })}>
                   <LessonCard {...lesson} />
                 </Link>
