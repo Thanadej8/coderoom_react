@@ -25,10 +25,11 @@ export default props => {
     validate,
     form,
     children,
+    classFormCard,
   } = props
 
   return (
-    <FormModal isOpen={isOpen} closeModal={closeModal} title={title}>
+    <FormModal isOpen={isOpen} closeModal={closeModal} title={title} classFormCard={classFormCard}>
       {mode === 'edit' && initialValues && Object.keys(initialValues).length !== 0 && (
         <ReduxForm
           onSubmit={handleSubmit}

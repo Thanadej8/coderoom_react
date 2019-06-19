@@ -18,7 +18,6 @@ export default props => {
     isOptionDisabled,
   } = props
   const { onChange, onBlur } = input
-
   const handleChange = useCallback(option => {
     const isObject = option instanceof Object
     const value = isObject ? option.value : ''

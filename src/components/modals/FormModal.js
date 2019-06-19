@@ -55,7 +55,7 @@ const CloseIcon = styled(Icon)`
 `
 
 export default props => {
-  const { isOpen, closeModal, title, children } = props
+  const { isOpen, closeModal, title, children, classFormCard } = props
   return (
     <Modal
       isOpen={isOpen}
@@ -64,7 +64,7 @@ export default props => {
       overlayClassName={overlayClassName}
       shouldCloseOnOverlayClick={true}
     >
-      <FormCard>
+      <FormCard className={classFormCard}>
         <CloseIcon name="times" onClick={() => closeModal()} />
         <Title>{title}</Title>
         {children}

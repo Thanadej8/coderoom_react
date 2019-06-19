@@ -7,6 +7,10 @@ import ActionsTopic from '@components/ActionsTopic'
 import ActionsCard from '@components/ActionsCard'
 import LessonCard from '@components/LessonCard'
 import { OvalButton, AddCircleButton } from '@components/buttons'
+import { useModalHandlers } from '@hooks'
+
+import LessonFormModal from './components/LessonFormModel'
+import LessonSortFormModal from './components/LessonSortFomModal'
 
 const WrapperActionTopic = styled.div`
   margin: 10px 0;
@@ -33,15 +37,29 @@ export default props => {
     { id: 1, name: 'การใช้ TreeMap, HashMap', mode: 'Learning', progress: 50 },
     { id: 1, name: 'การใช้ TreeMap, HashMap', mode: 'Learning', progress: 50 },
   ]
+  const lessonFormModal = useModalHandlers('lessonFormModal')
+  const lessonSortFormModal = useModalHandlers('lessonSortFormModal')
   return (
     <>
       <WrapperActionTopic>
         <ActionsTopic name="Lessons">
           <WrapperActionButton>
-            <OvalButton>Sort Lessons</OvalButton>
+            <OvalButton
+              onClick={() => {
+                lessonSortFormModal.openModal({})
+              }}
+            >
+              Sort Lessons
+            </OvalButton>
           </WrapperActionButton>
           <WrapperActionButton>
-            <AddCircleButton />
+            <AddCircleButton
+              onClick={() => {
+                lessonSortFormModal.openModal({
+                  mode: 'create',
+                })
+              }}
+            />
           </WrapperActionButton>
         </ActionsTopic>
       </WrapperActionTopic>
@@ -52,7 +70,12 @@ export default props => {
             return (
               <ActionsCard
                 key={`${lessons.name}_${index}`}
-                handleEditButtonClick={() => {}}
+                handleEditButtonClick={() => {
+                  lessonFormModal.openModal({
+                    mode: 'edit',
+                    lesson,
+                  })
+                }}
                 handleDeleteButtonClick={() => {}}
               >
                 <Link to={paths.courseLessons({ courseId: 1, lessonId: lesson.id })}>
@@ -62,6 +85,8 @@ export default props => {
             )
           })}
       </WrapperCards>
+      <LessonSortFormModal />
+      <LessonFormModal />
     </>
   )
 }

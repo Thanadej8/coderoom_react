@@ -10,12 +10,6 @@ import { isRequired } from '@components/forms/validators'
 import { FormRow, FormCol } from '@components/flex'
 import ReduxFormModal from '@components/ReduxFormModal'
 
-const classFormCard = css`
-  @media (min-width: 768px) {
-    width: 700px !important;
-  }
-`
-
 const Label = styled.p`
   margin-bottom: 5px;
 `
@@ -23,12 +17,13 @@ const CustomFormCol = styled(FormCol)`
   flex-direction: column;
 `
 
-const priorityOptions = [{ label: 'Normal', value: 1 }, { label: 'Express', value: 2 }]
-const statusOptions = [{ label: 'Show', value: 'true' }, { label: 'Hide', value: 'false' }]
+const modeOptions = [{ label: 'Learing', value: 'learing' }, { label: 'Exam', value: 'exam' }]
+const guildOptions = [{ label: 'Suggest', value: 'true' }, { label: 'unSuggest', value: 'false' }]
+const submitOptions = [{ label: 'Allow', value: 'true' }, { label: 'Disallow', value: 'false' }]
 
 export default props => {
-  const formName = 'annoucementForm'
-  const { isOpen, closeModal, annoucement, mode = 'edit' } = useModalProps('annoucmentFormModal')
+  const formName = 'lessonForm'
+  const { isOpen, closeModal, lesson, mode = 'edit' } = useModalProps('lessonFormModal')
   const validate = values => {
     let error = {}
 
@@ -44,50 +39,53 @@ export default props => {
     <ReduxFormModal
       isOpen={isOpen}
       closeModal={closeModal}
-      title={`${mode === 'create' ? 'Add' : 'Edit'} Annoucement`}
+      title={`${mode === 'create' ? 'Add' : 'Edit'} Lesson`}
       form={formName}
       mode={mode}
-      initialValues={{ ...annoucement }}
+      initialValues={{ ...lesson }}
       validate={validate}
       handleSubmit={mode === 'create' ? handleSubmitAddForm : handleSubmitEditForm}
-      classFormCard={classFormCard}
     >
       <FormRow>
         <CustomFormCol>
-          <Label>title :</Label>
-          <Field name="Title" component={Fields.Text} placeholder="Title" validate={[isRequired]} />
+          <Label>name :</Label>
+          <Field name="name" component={Fields.Text} placeholder="Name" validate={[isRequired]} />
         </CustomFormCol>
       </FormRow>
       <FormRow>
         <CustomFormCol>
-          <Label>priority :</Label>
+          <Label>mode :</Label>
           <Field
-            name="priority"
+            name="mode"
             component={Fields.Select}
-            placeholder="Priority"
-            options={priorityOptions}
-            validate={[isRequired]}
+            placeholder="Mode"
+            options={modeOptions}
             isClearable
           />
         </CustomFormCol>
       </FormRow>
       <FormRow>
         <CustomFormCol>
-          <Label>status :</Label>
+          <Label>guild :</Label>
           <Field
-            name="status"
+            name="guild"
             component={Fields.Select}
-            placeholder="Status"
-            options={statusOptions}
-            validate={[isRequired]}
+            placeholder="Guild"
+            options={guildOptions}
             isClearable
           />
         </CustomFormCol>
       </FormRow>
       <FormRow>
         <CustomFormCol>
-          <Label>content :</Label>
-          <Field name="content" component={Fields.QuillEditor} placeholder="Content" />
+          <Label>submit :</Label>
+          <Field
+            name="submit"
+            component={Fields.Select}
+            placeholder="Submit"
+            options={submitOptions}
+            isClearable
+          />
         </CustomFormCol>
       </FormRow>
     </ReduxFormModal>
