@@ -15,7 +15,7 @@ const Card = styled.div`
 const WrapperButtons = styled.div`
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-content: center;
   align-items: center;
 `
@@ -48,7 +48,7 @@ export default props => {
     children,
     handleSubmit,
     title = '',
-    labelSubmit = 'ตกลง',
+    labelSubmit = 'Submit',
     disabledButton = false,
   } = props
 

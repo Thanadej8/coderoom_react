@@ -5,6 +5,7 @@ import CheckBoxGroup from './CheckBoxGroup'
 import TextArea from './TextArea'
 import Cleave from './Cleave'
 import QuillEditor from './QuillEditor'
+import Transfer from './Transfer'
 
 export default {
   Text,
@@ -14,4 +15,5 @@ export default {
   TextArea,
   Cleave,
   QuillEditor,
+  Transfer,
 }

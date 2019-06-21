@@ -5,6 +5,8 @@ import ProgressBar from '@components/ProgressBar'
 import { OvalButton } from '@components/buttons'
 import { useModalHandlers } from '@hooks'
 
+import Form from './Form'
+
 const Wrapper = styled.div`
   width: 100%;
   opacity: ${props => (props.disableCourse ? '0.6' : '1')};
@@ -131,7 +133,12 @@ const WrapperButtons = styled.div`
 export default props => {
   const { className, isMoreCourse = false, hasExam = false, disableCourse = false } = props
 
-  const { openModal } = useModalHandlers('courseJoinModal')
+  const alertModel = useModalHandlers('alertModal')
+
+  const handleSubmit = useCallback(async values => {
+    // const response = await Http.get()
+    console.log('handleSubmit', values)
+  }, [])
 
   return (
     <Wrapper className={className} isMoreCourse={isMoreCourse} disableCourse={disableCourse}>
@@ -162,7 +169,16 @@ export default props => {
         <BackView isMoreCourse={isMoreCourse}>
           <BackTitle>Research Method Summer I</BackTitle>
           <WrapperButtons>
-            <OvalButton type="primary" onClick={() => openModal({})}>
+            <OvalButton
+              type="primary"
+              onClick={() => {
+                alertModel.openModal({
+                  title: 'Join Course',
+                  disabledButton: true,
+                  render: <Form onSubmit={handleSubmit} />,
+                })
+              }}
+            >
               Join
             </OvalButton>
           </WrapperButtons>

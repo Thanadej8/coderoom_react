@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { useStore } from 'react-redux'
 
 import { useModalHandlers } from '@hooks'
 import ActionsTopic from '@components/ActionsTopic'
@@ -32,7 +31,6 @@ const WrapperCards = styled.div`
 const Card = styled(AnnoucementCard)`
   cursor: pointer;
 `
-
 export default props => {
   const annoucements = [
     { title: 'เทส Annoucement นะจ๊ะ' },
@@ -61,6 +59,7 @@ export default props => {
           annoucements.length !== 0 &&
           annoucements.map((annoucement, index) => {
             const viewAnnoucementModal = useModalHandlers('viewAnnoucementModal')
+            const alertModel = useModalHandlers('alertModal')
             return (
               <ActionsCard
                 key={`${annoucement.title}_${index}`}
@@ -70,7 +69,14 @@ export default props => {
                     mode: 'edit',
                   })
                 }}
-                handleDeleteButtonClick={() => {}}
+                handleDeleteButtonClick={() => {
+                  alertModel.openModal({
+                    title: 'Delete Annoucement',
+                    handleSubmit: () => {},
+                    // labelSubmit: 'Delete',
+                    render: <p>Are you Sure?</p>,
+                  })
+                }}
               >
                 <Card
                   title={annoucement.title}

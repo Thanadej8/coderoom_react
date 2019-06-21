@@ -39,6 +39,12 @@ class Http extends Axios {
   constructor(config) {
     super({ ...defaultConfig, ...config })
 
+    this.interceptors.request.use(request => {
+      // TODO คุยกับพี่มิก รอทำ api
+      console.log('request', request)
+      return request
+    })
+
     this.interceptors.response.use(
       rawResponse => {
         const response = camelizeKeys(rawResponse)

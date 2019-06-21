@@ -14,29 +14,31 @@ const AsyncMemberCoursesLessonsPage = PageLoadable({
   loader: () => import('@pages/member/courses/lessons'),
 })
 
-export default props => (
-  <Switch>
-    <ProtectedRoute
-      exact
-      path={[patterns.member(), patterns.memberDashboard(), patterns.memberDashboardCourses()]}
-      component={AsyncMemberDashboardPage}
-    />
-    <ProtectedRoute exact path={patterns.memberProfile()} component={AsyncMemberProfilePage} />
-    <ProtectedRoute
-      exact
-      path={[patterns.memberCourses(), patterns.courseDashboardLessons()]}
-      component={AsyncMemberCoursesPage}
-    />
-    <ProtectedRoute
-      exact
-      path={patterns.courseMembers()}
-      component={AsyncMemberCoursesMembersPage}
-    />
-    <ProtectedRoute
-      exact
-      path={patterns.courseLessons()}
-      component={AsyncMemberCoursesLessonsPage}
-    />
-    <Route component={Page404} />
-  </Switch>
-)
+export default props => {
+  return (
+    <Switch>
+      <ProtectedRoute
+        exact
+        path={[patterns.member(), patterns.memberDashboard(), patterns.memberDashboardCourses()]}
+        component={AsyncMemberDashboardPage}
+      />
+      <ProtectedRoute exact path={patterns.memberProfile()} component={AsyncMemberProfilePage} />
+      <ProtectedRoute
+        exact
+        path={[patterns.memberCourses(), patterns.courseDashboardLessons()]}
+        component={AsyncMemberCoursesPage}
+      />
+      <ProtectedRoute
+        exact
+        path={patterns.courseMembers()}
+        component={AsyncMemberCoursesMembersPage}
+      />
+      <ProtectedRoute
+        exact
+        path={patterns.courseLessons()}
+        component={AsyncMemberCoursesLessonsPage}
+      />
+      <Route component={Page404} />
+    </Switch>
+  )
+}

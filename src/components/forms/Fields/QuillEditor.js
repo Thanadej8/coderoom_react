@@ -11,9 +11,9 @@ export default props => {
     meta: { submitting, touched, error },
   } = props
 
-  const { onChange, value } = input
+  const { onChange, onBlur, value } = input
   const handleChange = useCallback((content, delta, source, editor) => {
-    onChange(content)
+    onBlur(content)
   })
 
   return (

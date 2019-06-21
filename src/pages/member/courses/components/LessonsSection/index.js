@@ -46,7 +46,9 @@ export default props => {
           <WrapperActionButton>
             <OvalButton
               onClick={() => {
-                lessonSortFormModal.openModal({})
+                lessonSortFormModal.openModal({
+                  mode: 'edit',
+                })
               }}
             >
               Sort Lessons
@@ -55,7 +57,7 @@ export default props => {
           <WrapperActionButton>
             <AddCircleButton
               onClick={() => {
-                lessonSortFormModal.openModal({
+                lessonFormModal.openModal({
                   mode: 'create',
                 })
               }}
@@ -67,6 +69,7 @@ export default props => {
         {lessons &&
           lessons.length !== 0 &&
           lessons.map((lesson, index) => {
+            const alertModel = useModalHandlers('alertModal')
             return (
               <ActionsCard
                 key={`${lessons.name}_${index}`}
@@ -76,7 +79,14 @@ export default props => {
                     lesson,
                   })
                 }}
-                handleDeleteButtonClick={() => {}}
+                handleDeleteButtonClick={() => {
+                  alertModel.openModal({
+                    title: 'Delete Lesson',
+                    handleSubmit: () => {},
+                    // labelSubmit: 'Delete',
+                    render: <p>Are you Sure?</p>,
+                  })
+                }}
               >
                 <Link to={paths.courseLessons({ courseId: 1, lessonId: lesson.id })}>
                   <LessonCard {...lesson} />

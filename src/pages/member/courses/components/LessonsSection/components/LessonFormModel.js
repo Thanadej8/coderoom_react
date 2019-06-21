@@ -18,7 +18,7 @@ const CustomFormCol = styled(FormCol)`
 `
 
 const modeOptions = [{ label: 'Learing', value: 'learing' }, { label: 'Exam', value: 'exam' }]
-const guildOptions = [{ label: 'Suggest', value: 'true' }, { label: 'unSuggest', value: 'false' }]
+const guildOptions = [{ label: 'Suggest', value: 'true' }, { label: 'Unsuggest', value: 'false' }]
 const submitOptions = [{ label: 'Allow', value: 'true' }, { label: 'Disallow', value: 'false' }]
 
 export default props => {

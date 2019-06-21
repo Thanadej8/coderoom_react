@@ -6,7 +6,7 @@ import { OvalButton } from '@components/buttons'
 import { isRequired, fitString } from '@components/forms/validators'
 import Fields from '@components/forms/Fields'
 
-const Form = styled.div``
+const Form = styled.form``
 const Label = styled.p`
   margin-bottom: 5px;
 `
@@ -20,7 +20,7 @@ const fitCodeCourse = fitString(6)
 
 export default reduxForm({ form: 'courseJoinForm' })(props => {
   const { handleSubmit, error, submitting } = props
-
+  console.log('props', props)
   return (
     <Form onSubmit={handleSubmit}>
       <Label>Course Code :</Label>

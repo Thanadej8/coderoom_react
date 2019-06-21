@@ -36,14 +36,55 @@ export default props => {
       title={`Lessons Sort`}
       form={formName}
       mode="edit"
-      initialValues={{ ...lessons }}
+      initialValues={{
+        ...lessons,
+        teachers: ['1'],
+      }}
       validate={validate}
       handleSubmit={handleSubmit}
     >
       <FormRow>
         <CustomFormCol>
-          <Label>name :</Label>
-          <Field name="name" component={Fields.Text} placeholder="Name" validate={[isRequired]} />
+          <Label>teachers :</Label>
+          <Field
+            name="teachers"
+            component={Fields.Transfer}
+            titles={['all teacher', 'teachers']}
+            render={item => item.title}
+            dataSource={[
+              {
+                key: '1',
+                title: 'ธนเดช พัดทอง',
+                description: '',
+                disabled: false,
+              },
+              {
+                key: '2',
+                title: 'ธนเดช พัดทอง',
+                description: '',
+                disabled: false,
+              },
+              {
+                key: '3',
+                title: 'ธนเดช พัดทอง',
+                description: '',
+                disabled: false,
+              },
+              {
+                key: '4',
+                title: 'ธนเดช พัดทอง',
+                description: '',
+                disabled: false,
+              },
+              {
+                key: '5',
+                title: 'ธนเดช พัดทอง',
+                description: '',
+                disabled: false,
+              },
+            ]}
+            validate={[isRequired]}
+          />
         </CustomFormCol>
       </FormRow>
     </ReduxFormModal>

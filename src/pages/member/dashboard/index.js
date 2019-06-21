@@ -8,8 +8,6 @@ import CourseCard from '@components/CourseCard'
 import Layout from '@components/MemberLayout'
 import PageTitle from '@components/PageTitle'
 
-import CourseJoinModal from './components/CourseJoinModal'
-
 const Title = styled(PageTitle)`
   font-size: 28px;
   font-weight: 300;
@@ -67,7 +65,6 @@ export default props => {
         <CourseCard isMoreCourse />
         <CourseCard isMoreCourse />
       </WrapperCourses>
-      <CourseJoinModal />
     </Layout>
   )
 }

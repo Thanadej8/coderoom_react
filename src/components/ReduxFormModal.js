@@ -27,7 +27,6 @@ export default props => {
     children,
     classFormCard,
   } = props
-
   return (
     <FormModal isOpen={isOpen} closeModal={closeModal} title={title} classFormCard={classFormCard}>
       {mode === 'edit' && initialValues && Object.keys(initialValues).length !== 0 && (
