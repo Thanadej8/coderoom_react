@@ -6,6 +6,7 @@ import TextArea from './TextArea'
 import Cleave from './Cleave'
 import QuillEditor from './QuillEditor'
 import Transfer from './Transfer'
+import FileUploadButton from './FileUploadButton'
 
 export default {
   Text,
@@ -16,4 +17,5 @@ export default {
   Cleave,
   QuillEditor,
   Transfer,
+  FileUploadButton,
 }

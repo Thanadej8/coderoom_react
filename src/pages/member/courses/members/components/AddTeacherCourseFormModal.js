@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import styled from '@emotion/styled'
 import { Field, getFormError, isSubmitting } from 'redux-form'
 import { useSelector } from 'react-redux'
@@ -17,8 +17,8 @@ const CustomFormCol = styled(FormCol)`
 `
 
 export default props => {
-  const formName = 'lessonSortForm'
-  const { isOpen, closeModal, lessons } = useModalProps('lessonSortFormModal')
+  const formName = 'addTeacherCouseForm'
+  const { isOpen, closeModal, teachers } = useModalProps('addTeacherCouseFormModal')
   const validate = values => {
     let error = {}
 
@@ -27,55 +27,60 @@ export default props => {
 
   const handleSubmit = useCallback(async values => {})
 
+  const dataSource = useMemo(() => teachers)
+  const targetKeys = ['1']
+
   const formError = useSelector(state => getFormError(formName)(state))
   const submitting = useSelector(state => isSubmitting(formName)(state))
   return (
     <ReduxFormModal
       isOpen={isOpen}
       closeModal={closeModal}
-      title={`Lessons Sort`}
+      title={`Add Teachers`}
       form={formName}
       mode="edit"
-      initialValues={{}}
+      initialValues={{
+        teachers: targetKeys,
+      }}
       validate={validate}
       handleSubmit={handleSubmit}
     >
       <FormRow>
         <CustomFormCol>
-          <Label>lessons :</Label>
+          <Label>teachers :</Label>
           <Field
-            name="lessons"
+            name="teachers"
             component={Fields.Transfer}
-            titles={['lessons', 'sorted lessons']}
+            titles={['all teacher', 'teachers']}
             render={item => item.title}
             dataSource={[
               {
                 key: '1',
-                title: 'Loop 1 ชั้น',
+                title: 'ธนเดช พัดทอง',
                 description: '',
                 disabled: false,
               },
               {
                 key: '2',
-                title: 'Loop 2 ชั้น',
+                title: 'ธนเดช พัดทอง',
                 description: '',
                 disabled: false,
               },
               {
                 key: '3',
-                title: 'Loop 3 ชั้น',
+                title: 'ธนเดช พัดทอง',
                 description: '',
                 disabled: false,
               },
               {
                 key: '4',
-                title: 'Loop 4 ชั้น',
+                title: 'ธนเดช พัดทอง',
                 description: '',
                 disabled: false,
               },
               {
                 key: '5',
-                title: 'Loop 5 ชั้น',
+                title: 'ธนเดช พัดทอง',
                 description: '',
                 disabled: false,
               },

@@ -3,12 +3,15 @@ import { isEmpty, isMinString, isEmail as validateIsEmail, byteToSize } from '@u
 // validate field
 export const isRequired = value => {
   let status = true
+
   if (typeof value === 'number') {
     status = isEmpty(`${value}`)
   } else if (typeof value === 'string') {
     status = isEmpty(value)
   } else if (value instanceof Array) {
     status = value.length === 0
+  } else if (value instanceof File) {
+    status = false
   }
 
   return status ? '*required' : undefined
@@ -54,4 +57,13 @@ export const isSilpakornEmail = value => {
   let status = false
   status = /.+@silpakorn.edu$/.test(value)
   return !status ? '*required only @silpakorn.edu' : undefined
+}
+
+export const requiredFileType = (type, regular) => value => {
+  let status = false
+  if (value instanceof File) {
+    const type = value.type
+    status = regular.test(type)
+  }
+  return !status ? `*required file ${type} type` : undefined
 }

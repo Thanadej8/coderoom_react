@@ -65,11 +65,11 @@ export default props => {
       <WrapperCourse>
         <CourseTitle>Research Method Summer I</CourseTitle>
         <WrapperLessons>
-          <LessonCard />
-          <LessonCard />
-          <LessonCard />
-          <LessonCard />
-          <LessonCard />
+          <LessonCard name="การใช้ TreeMap, HashMap" />
+          <LessonCard name="การใช้ TreeMap, HashMap" />
+          <LessonCard name="การใช้ TreeMap, HashMap" />
+          <LessonCard name="การใช้ TreeMap, HashMap" />
+          <LessonCard name="การใช้ TreeMap, HashMap" />
         </WrapperLessons>
       </WrapperCourse>
     </Wrapper>
