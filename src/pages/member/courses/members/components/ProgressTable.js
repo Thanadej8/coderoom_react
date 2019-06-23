@@ -1,25 +1,21 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useMemo } from 'react'
 import styled from '@emotion/styled'
 
 import Table from '@components/Table'
+import { useModalHandlers } from '@hooks'
+import StudentName from './StudentName'
 
-const WrapperStudent = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-const Code = styled.p`
-  color: #dde1e3;
-`
-const Name = styled.p`
-  /* font-size: 16px; */
-`
 const ProgressPersen = styled.p`
   text-align: center;
   color: ${props => props.theme.primaryColor};
 `
+const CustomStudentName = styled(StudentName)`
+  cursor: pointer;
+`
 
 export default props => {
   const { students } = props
+  const studentProfileModal = useModalHandlers('studentProfileModal')
   const columns = useMemo(() => [
     {
       title: 'Name',
@@ -28,12 +24,17 @@ export default props => {
       align: 'left',
       fixed: 'left',
       render: (text, record) => {
-        const { code } = record
+        const { code, id } = record
         return (
-          <WrapperStudent>
-            <Code>{code}</Code>
-            <Name>{text}</Name>
-          </WrapperStudent>
+          <CustomStudentName
+            name={text}
+            code={code}
+            onClick={() => {
+              studentProfileModal.openModal({
+                id,
+              })
+            }}
+          />
         )
       },
     },

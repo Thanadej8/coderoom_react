@@ -35,7 +35,7 @@ export default props => {
     <ReduxFormModal
       isOpen={isOpen}
       closeModal={closeModal}
-      title={`Add Teachers`}
+      title={`Add Students`}
       form={formName}
       mode="create"
       initialValues={{}}

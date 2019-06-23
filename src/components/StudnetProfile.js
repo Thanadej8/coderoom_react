@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 
 import image from '@assets/images/au.JPG'
@@ -55,6 +55,11 @@ const WrapperLessons = styled.div`
 `
 
 export default props => {
+  const { id } = props
+
+  useEffect(() => {
+    // fetchStudent
+  }, [id])
   return (
     <Wrapper>
       <WrapperNameStudnetCode>

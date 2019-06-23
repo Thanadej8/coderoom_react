@@ -10,7 +10,10 @@ import AddStrudentCourseFormModal from './components/AddStrudentCourseFormModal'
 import image from '@assets/images/au.JPG'
 import Tabs, { TabPane } from '@components/Tabs'
 import { Authorized } from '@utils/ability'
-import StudentTable from './components/strudent/Table'
+import ProgressTable from './components/ProgressTable'
+import StudentProfileModal from './components/StudentProfileModal'
+import Management from './components/teachers/Management'
+import Progressed from './components/teachers/Progressed'
 
 const WrapperActionButton = styled.div`
   margin: 0 5px;
@@ -114,7 +117,7 @@ export default props => {
         </WrapperActionButton>
       </ActionTopic>
       <Authorized requiredRole="strudent">
-        <StudentTable
+        <ProgressTable
           students={[
             {
               name: 'ธนเดช พัดทอง',
@@ -125,17 +128,33 @@ export default props => {
       </Authorized>
 
       <Authorized requiredRole="teacher">
-        <Tabs defaultActiveKey="information">
-          <TabPane tab="Information" key="information">
-            {/* <Information /> */}
-          </TabPane>
+        <Tabs defaultActiveKey="management">
           <TabPane tab="Management" key="management">
-            {/* <Management /> */}
+            <Management
+              students={[
+                {
+                  name: 'Thanadej Phadtong',
+                  code: '07570497',
+                  ip: '192.168.1.1',
+                  status: false,
+                },
+                {
+                  name: 'Thanadej Phadtong',
+                  code: '07570497',
+                  ip: '192.168.1.1',
+                  status: false,
+                },
+              ]}
+            />
+          </TabPane>
+          <TabPane tab="Progressed" key="progressed">
+            <Progressed />
           </TabPane>
         </Tabs>
       </Authorized>
       <AddStrudentCourseFormModal />
       <AddTeacherCouseFormModal />
+      <StudentProfileModal />
     </Layout>
   )
 }
