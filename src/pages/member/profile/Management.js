@@ -6,7 +6,7 @@ import Fields from '@components/forms/Fields'
 import { FormRow, FormCol } from '@components/flex'
 import { OvalButton } from '@components/buttons'
 
-import { isRequired, isEmail, isSilpakornEmail } from '@components/forms/validators'
+import { isRequired, isEmail, isSilpakornEmail, maxImageSize } from '@components/forms/validators'
 
 const Card = styled.div`
   padding: 10px 15px;
@@ -31,6 +31,13 @@ const WrapperButton = styled.div`
   display: flex;
   justify-content: center;
 `
+const WrapperImage = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+`
 
 const validate = values => {
   let error = {}
@@ -44,6 +51,9 @@ const EditProfileForm = reduxForm({ form: 'editProfile', validate })(props => {
   const { handleSubmit, error, submitting } = props
   return (
     <Form onSubmit={handleSubmit}>
+      <WrapperImage>
+        <Field name="image" component={Fields.ImagePreviewUpload} validate={[maxImageSize]} />
+      </WrapperImage>
       <FormRow>
         <CustomFormCol>
           <Label>Name :</Label>

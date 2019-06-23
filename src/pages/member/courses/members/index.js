@@ -10,6 +10,8 @@ import AddStrudentCourseFormModal from './components/AddStrudentCourseFormModal'
 import image from '@assets/images/au.JPG'
 import Tabs, { TabPane } from '@components/Tabs'
 import { Authorized } from '@utils/ability'
+import ProfileImage from '@components/ProfileImage'
+
 import ProgressTable from './components/ProgressTable'
 import StudentProfileModal from './components/StudentProfileModal'
 import Management from './components/teachers/Management'
@@ -42,21 +44,6 @@ const WrapperTeacherImage = styled.div`
   display: flex;
   justify-content: center;
 `
-const WrapperDotTacherImage = styled.div`
-  border: 1px dashed #dde1e3;
-  border-radius: 100%;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-`
-const TeacherImage = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  margin: auto;
-`
 const TeacherName = styled.p`
   color: #000;
   font-size: 16px;
@@ -84,25 +71,19 @@ export default props => {
       <WrapperTeachers>
         <TeacherCard>
           <WrapperTeacherImage>
-            <WrapperDotTacherImage>
-              <TeacherImage src={image} />
-            </WrapperDotTacherImage>
+            <ProfileImage />
           </WrapperTeacherImage>
           <TeacherName>ธนเดช พัดทอง</TeacherName>
         </TeacherCard>
         <TeacherCard>
           <WrapperTeacherImage>
-            <WrapperDotTacherImage>
-              <TeacherImage src={image} />
-            </WrapperDotTacherImage>
+            <ProfileImage />
           </WrapperTeacherImage>
           <TeacherName>ธนเดช พัดทอง</TeacherName>
         </TeacherCard>
         <TeacherCard>
           <WrapperTeacherImage>
-            <WrapperDotTacherImage>
-              <TeacherImage src={image} />
-            </WrapperDotTacherImage>
+            <ProfileImage />
           </WrapperTeacherImage>
           <TeacherName>ธนเดช พัดทอง</TeacherName>
         </TeacherCard>

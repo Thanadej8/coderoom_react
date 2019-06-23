@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import Icon from '@components/Icon'
-import image from '@assets/images/au.JPG'
 import { logout } from '@stores/app'
 import { withRouter } from '@enhancers'
 import { paths } from '@routers'
+import userImage from '@assets/images/user.svg'
 
 import PageContainer from './PageContainer'
 
@@ -49,7 +49,8 @@ const ProfileDetail = styled.div`
 const ProfileImage = styled.img`
   width: 35px;
   height: 35px;
-  border: 1px solid #f1f1f1;
+  padding: 2px;
+  border: 1px dashed #f1f1f1;
   border-radius: 100%;
 `
 const ProfileName = styled.p`
@@ -147,7 +148,7 @@ const Profile = withRouter(props => {
   return (
     <WrapperProfile>
       <ProfileDetail onClick={() => setIsOpen(!isOpen)}>
-        <ProfileImage src={image} />
+        <ProfileImage src={userImage} />
         <ProfileName>Thanadej Phadtong</ProfileName>
         <AngleDownIcon name="angle-down" />
       </ProfileDetail>

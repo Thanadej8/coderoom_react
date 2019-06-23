@@ -12,13 +12,16 @@ const AsyncForgotPasswordPage = PageLoadable({ loader: () => import('@pages/forg
 const AsyncMemberPage = PageLoadable({ loader: () => import('@pages/member') })
 
 const AlertModal = props => {
-  const { isOpen, closeModal, title, disabledButton, render } = useModalProps('alertModal')
+  const { isOpen, closeModal, title, disabledButton, render, labelSubmit } = useModalProps(
+    'alertModal',
+  )
   return (
     <BaseAlertModal
       isOpen={isOpen}
       closeModal={closeModal}
       title={title}
       disabledButton={disabledButton}
+      labelSubmit={labelSubmit}
     >
       {render}
     </BaseAlertModal>

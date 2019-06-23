@@ -5,7 +5,7 @@ import { Button as AntdButton } from 'antd'
 const Button = styled(AntdButton)``
 
 export default props => {
-  const { type, disabled, htmlType, onClick, children, loading, className } = props
+  const { type, disabled, htmlType, onClick, children, loading, className, htmlFor } = props
   // type primary, dashed, danger, default
   return (
     <Button
@@ -15,6 +15,7 @@ export default props => {
       onClick={onClick}
       loading={loading}
       className={className}
+      htmlFor={htmlFor}
     >
       {children}
     </Button>

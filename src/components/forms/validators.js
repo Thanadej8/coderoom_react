@@ -53,6 +53,8 @@ export const maxFileSize = maxByte => file => {
   return status ? `*please upload files that are no larger than ${maxSize} ${maxUnit}` : undefined
 }
 
+export const maxImageSize = maxFileSize(5 * Math.pow(1024, 2))
+
 export const isSilpakornEmail = value => {
   let status = false
   status = /.+@silpakorn.edu$/.test(value)

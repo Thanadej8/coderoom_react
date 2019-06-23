@@ -10,6 +10,8 @@ import Tabs, { TabPane } from '@components/Tabs'
 import { Authorized } from '@utils/ability'
 import Inputs from '@components/Inputs'
 import { Row, Col } from '@components/flex'
+import { useTitlePage, useModalHandlers } from '@hooks'
+
 import AnnoucmentSection from './components/AnnoucementSection'
 import LessonsSection from './components/LessonsSection'
 
@@ -170,6 +172,9 @@ const WrapperSelect = styled.div`
 export default props => {
   const { courseName = 'Research Method Summer I' } = props
 
+  useTitlePage(courseName || '')
+
+  const alertModal = useModalHandlers('alertModal')
   return (
     <Layout>
       <CourseCard>
@@ -240,7 +245,19 @@ export default props => {
                   <CourseCode>
                     CODE: <span>6AB2SD</span>
                   </CourseCode>
-                  <ResetCourseCodeButton type="danger">Reset Course Code</ResetCourseCodeButton>
+                  <ResetCourseCodeButton
+                    type="danger"
+                    onClick={() => {
+                      alertModal.openModal({
+                        title: 'Reset Course Code',
+                        handleSubmit: () => {},
+                        render: <p>Are you sure?</p>,
+                        labelSubmit: 'Reset',
+                      })
+                    }}
+                  >
+                    Reset Course Code
+                  </ResetCourseCodeButton>
                 </WrapperCourseCode>
               </TabCard>
             </TabPane>

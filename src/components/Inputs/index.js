@@ -7,6 +7,7 @@ import Cleave from './Cleave'
 import QuillEditor from './QuillEditor'
 import Transfer from './Transfer'
 import FileUploadButton from './FileUploadButton'
+import ImagePreviewUpload from './ImagePreviewUpload'
 
 export default {
   Text,
@@ -18,4 +19,5 @@ export default {
   QuillEditor,
   Transfer,
   FileUploadButton,
+  ImagePreviewUpload,
 }
