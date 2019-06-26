@@ -11,7 +11,7 @@ import userImage from '@assets/images/user.svg'
 
 import PageContainer from './PageContainer'
 
-const Header = styled.header`
+export const Header = styled.header`
   width: 100%;
   height: 60px;
   background-color: #fff;
@@ -20,7 +20,7 @@ const Header = styled.header`
   z-index: 1;
   position: fixed;
 `
-const Container = styled(PageContainer)`
+export const Container = styled(PageContainer)`
   display: flex;
   justify-content: space-between;
   ${props => props.theme.media('tablet')} {
@@ -29,7 +29,7 @@ const Container = styled(PageContainer)`
     align-content: center;
   }
 `
-const Logo = styled.h1`
+export const Logo = styled.h1`
   font-size: 28px;
   font-weight: 400;
   color: ${props => props.theme.primaryColor};
@@ -108,7 +108,7 @@ const Action = styled.li`
   }
 `
 
-const Profile = withRouter(props => {
+export const Profile = withRouter(props => {
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
   const { history } = props

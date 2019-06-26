@@ -1,8 +1,14 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-const Wrapper = styled.div``
+import Layout from './components/Layout'
+import ProblemDetailModal from './components/ProblemDetailModal'
 
 export default props => {
-  return <Wrapper>Student Lessons View</Wrapper>
+  return (
+    <Layout>
+      Student Lessons View
+      <ProblemDetailModal />
+    </Layout>
+  )
 }
