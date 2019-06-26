@@ -6,6 +6,7 @@ import { paths } from '@routers'
 import { OvalButton } from '@components/buttons'
 import { Profile, Header, Logo } from '@components/MemberLayout/Header'
 import { useModalHandlers, useModalProps } from '@hooks'
+import Icon from '@components/Icon'
 
 import Hamberger from './Hamberger'
 
@@ -22,6 +23,9 @@ const WrapperHamberger = styled.div`
 `
 const Problem = styled.div`
   cursor: pointer;
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 10px;
   display: flex;
   align-content: center;
   align-items: center;
@@ -29,7 +33,17 @@ const Problem = styled.div`
 const ProblemName = styled.p`
   font-size: 20px;
   color: ${props => props.theme.primaryColor};
-  font-weight: 500;
+  font-weight: 400;
+`
+const BackToLessonsLink = styled(Link)`
+  display: flex;
+  align-content: center;
+  align-items: center;
+`
+const AngleRightIcon = styled(Icon)`
+  /* rotate:  */
+  transform: rotate(180deg);
+  margin-right: 10px;
 `
 
 export default props => {
@@ -48,7 +62,10 @@ export default props => {
         </WrapperHamberger>
         <ProblemName>1.Labor</ProblemName>
       </Problem>
-
+      <BackToLessonsLink to={paths.courseDashboardLessons({ courseId: 1 })}>
+        {/* <AngleRightIcon name="angle-right" /> */}
+        Research Method Summer I
+      </BackToLessonsLink>
       <Profile />
     </CustomHeader>
   )

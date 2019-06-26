@@ -223,15 +223,15 @@ export default props => {
         <WrapperDetailBoxs>
           <WrapperDetailBox>
             <DetailBox>
-              <p>Mode</p>
               <p>Learning</p>
+              <p>Mode</p>
             </DetailBox>
           </WrapperDetailBox>
 
           <WrapperDetailBox>
             <DetailBox>
-              <p>Course Status</p>
               <p>Active</p>
+              <p>Course Status</p>
             </DetailBox>
           </WrapperDetailBox>
         </WrapperDetailBoxs>

@@ -27,7 +27,8 @@ const WrapperHamberger = styled.div`
     position: absolute;
     height: 4px;
     width: 100%;
-    background: ${props => props.theme.primaryColor};
+    /* background: ${props => props.theme.primaryColor}; */
+    background: #A5A7B0;
     border-radius: 4px;
     opacity: 1;
     left: 0;
