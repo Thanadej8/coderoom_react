@@ -3,10 +3,9 @@ import styled from '@emotion/styled'
 import { css } from 'emotion'
 
 const WrapperHamberger = styled.div`
-  width: 25px;
-  height: 25px;
+  width: 16px;
+  height: 16px;
   position: relative;
-  margin-right: 5px;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -25,7 +24,7 @@ const WrapperHamberger = styled.div`
   span {
     display: block;
     position: absolute;
-    height: 4px;
+    height: 2px;
     width: 100%;
     /* background: ${props => props.theme.primaryColor}; */
     background: #A5A7B0;
@@ -36,15 +35,15 @@ const WrapperHamberger = styled.div`
     transition: 0.25s ease-in-out;
 
     &:nth-of-type(1) {
-      top: 0px;
+      top: 2px;
     }
     &:nth-of-type(2),
     &:nth-of-type(3) {
-      top: 9px;
+      top: 7px;
     }
 
     &:nth-of-type(4) {
-      top: 18px;
+      bottom: 2px;
     }
   }
 `
@@ -52,7 +51,7 @@ const WrapperHamberger = styled.div`
 const open = css`
   span {
     &:nth-of-type(1) {
-      top: 9px;
+      top: 2px;
       width: 0%;
       left: 50%;
       opacity: 0;
@@ -67,7 +66,7 @@ const open = css`
     }
 
     &:nth-of-type(4) {
-      top: 9px;
+      bottom: 2px;
       width: 0%;
       left: 50%;
       opacity: 0;

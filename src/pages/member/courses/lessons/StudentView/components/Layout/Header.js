@@ -12,33 +12,47 @@ import Hamberger from './Hamberger'
 
 const CustomHeader = styled(Header)`
   padding: 10px 20px;
+  z-index: 999999;
+`
+const WrapperHeader = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  z-index: 999999;
 `
+
 const WrapperHamberger = styled.div`
-  margin-right: 10px;
+  margin-right: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 `
 const Problem = styled.div`
   cursor: pointer;
   background-color: #f1f1f1;
-  padding: 5px 10px;
-  border-radius: 10px;
+  padding: 8px 15px;
+  border-radius: 25px;
   display: flex;
   align-content: center;
   align-items: center;
 `
 const ProblemName = styled.p`
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 16px;
   color: ${props => props.theme.primaryColor};
   font-weight: 400;
 `
 const BackToLessonsLink = styled(Link)`
-  display: flex;
-  align-content: center;
-  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: ${props => props.theme.primaryColor};
 `
 const AngleRightIcon = styled(Icon)`
   /* rotate:  */
@@ -56,17 +70,19 @@ export default props => {
 
   return (
     <CustomHeader>
-      <Problem onClick={handleProblemClick}>
-        <WrapperHamberger>
-          <Hamberger isOpen={isOpen} />
-        </WrapperHamberger>
-        <ProblemName>1.Labor</ProblemName>
-      </Problem>
-      <BackToLessonsLink to={paths.courseDashboardLessons({ courseId: 1 })}>
-        {/* <AngleRightIcon name="angle-right" /> */}
-        Research Method Summer I
-      </BackToLessonsLink>
-      <Profile />
+      <WrapperHeader>
+        <Problem onClick={handleProblemClick}>
+          <WrapperHamberger>
+            <Hamberger isOpen={isOpen} />
+          </WrapperHamberger>
+          <ProblemName>1.Labor</ProblemName>
+        </Problem>
+        <BackToLessonsLink to={paths.courseDashboardLessons({ courseId: 1 })}>
+          {/* <AngleRightIcon name="angle-right" /> */}
+          Research Method Summer I
+        </BackToLessonsLink>
+        <Profile />
+      </WrapperHeader>
     </CustomHeader>
   )
 }

@@ -106,7 +106,7 @@ export default props => {
       },
 
       {
-        title: 'Error',
+        title: 'Issues',
         dataIndex: 'issues',
         align: 'center',
         render: (text, record) => {
@@ -128,8 +128,18 @@ export default props => {
             { id: 1, output: true, issues: '' },
             { id: 2, output: false, issues: 'Time Limit exceeded' },
             { id: 3, output: true, issues: '' },
+            { id: 4, output: true, issues: '' },
+            { id: 5, output: true, issues: '' },
+            { id: 6, output: true, issues: '' },
+            { id: 7, output: true, issues: '' },
+            { id: 8, output: true, issues: '' },
+            { id: 9, output: true, issues: '' },
+            { id: 10, output: true, issues: '' },
+            { id: 11, output: true, issues: '' },
+            { id: 12, output: true, issues: '' },
+            { id: 13, output: true, issues: '' },
           ]}
-          pagination={false}
+          // pagination={false}
           bordered
           // scroll={{ x: '150%' }}
         />
