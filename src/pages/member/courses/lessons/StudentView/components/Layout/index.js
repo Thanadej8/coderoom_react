@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   flex-direction: column;
 `
 const Body = styled.div`
-  /* position: relative; */
   padding-top: 60px;
   width: 100%;
   height: 100%;

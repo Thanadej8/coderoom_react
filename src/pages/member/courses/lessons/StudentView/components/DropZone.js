@@ -5,12 +5,12 @@ import { useDropzone } from 'react-dropzone'
 const WrapperDropZone = styled.div`
   opacity: ${props => (props.isDragActive ? '0.5' : '0')};
   padding: 10px;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   background-color: #f1f1f1;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: ${props => (props.isDragActive ? '9999999' : 'unset')};
   display: flex;
   justify-content: center;
@@ -27,12 +27,15 @@ export default props => {
     console.log('acceptedFiles', acceptedFiles)
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  console.log('isDragActive', isDragActive)
+  console.log('getRootProps()', getRootProps())
   return (
     <WrapperDropZone
       {...getRootProps()}
       onBlur={() => {}}
       onClick={() => {}}
       isDragActive={isDragActive}
+      tabIndex="10"
     >
       <input {...getInputProps()} />
       <Text>Plase drop only file</Text>

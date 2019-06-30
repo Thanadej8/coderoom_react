@@ -38,12 +38,13 @@ export default props => {
     value,
     planceholder = 'ยังไม่มีไฟล์',
     classNameFileName,
+    multiple = false,
   } = props
   // genarate uuid มาใส่ id เพื่อลดการซ้ำ
   const fileName = (value && value.name) || planceholder
   return (
     <Wrapper>
-      <Input id={name} type={type} accept={accept} onChange={onChange} />
+      <Input id={name} type={type} accept={accept} onChange={onChange} multiple={multiple} />
       <Label htmlFor={name} className={className} disabled={disabled}>
         เลือกไฟล์
       </Label>
