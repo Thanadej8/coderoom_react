@@ -148,6 +148,7 @@ export default props => {
             <ProblemName>
               3.Test Word Problem Na Ja asdfasdf sadfasdfa sdfadsf asdfsa fadsfasfas
             </ProblemName>
+            <CorrectProblemText>Correct</CorrectProblemText>
           </Problem>
         </Tooltip>
       </ProblemNav>
