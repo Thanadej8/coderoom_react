@@ -27,8 +27,6 @@ export default props => {
     console.log('acceptedFiles', acceptedFiles)
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
-  console.log('isDragActive', isDragActive)
-  console.log('getRootProps()', getRootProps())
   return (
     <WrapperDropZone
       {...getRootProps()}

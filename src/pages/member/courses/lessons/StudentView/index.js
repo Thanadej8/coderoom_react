@@ -177,7 +177,7 @@ export default props => {
             <WrapperEditor>
               <MonacoEditor language="java" theme="vs-dark" value="test" options={options} />
             </WrapperEditor>
-            {/* <DropZone /> */}
+            <DropZone />
             {/* <HeaderSection>test</HeaderSection> */}
           </ProblemEditorSection>
         </WrapperSection>
