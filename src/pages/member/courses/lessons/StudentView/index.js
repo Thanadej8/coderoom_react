@@ -27,6 +27,7 @@ const Wrapper = styled.div`
 `
 const WrapperSection = styled.div`
   height: calc(100% - 60px);
+  position: relative;
   display: flex;
   justify-content: space-between;
 `
@@ -55,11 +56,14 @@ const HeaderResourcesSection = styled(HeaderSection)`
   align-content: center;
   align-items: center;
 `
-const WrapperSlideBar = styled.div`
-  width: 10px;
+const GhostBar = styled.div`
+  width: 20px;
   height: 100%;
+  left: 50%;
   background-color: #a5a7b0;
+  position: absolute;
   cursor: ew-resize;
+  z-index: 10;
 `
 const WrapperEditor = styled.div`
   height: 100%;
@@ -115,7 +119,37 @@ const SlideBar = props => {
     console.log('event', event)
   })
 
-  return <WrapperSlideBar ondragstart={handleDragStart} />
+  const resize = useCallback(event => {
+    const ghostBarElement = document.getElementById('ghost_bar')
+    const viewSection = document.getElementById('problem_view_section')
+    const editorSection = document.getElementById('problem_editor_section')
+    console.log('event', event)
+
+    const percentage = (event.pageX / window.innerWidth) * 100
+    const viewSectionWidth = 100 - percentage
+    const editorSectionWidth = percentage
+    // var mainPercentage = 100 - percentage
+    // problemViewSection.style.width =
+    // console.log('e.pageX+2', event.pageX + 2)
+    console.log('percentage', percentage)
+    console.log('viewSectionWidth', viewSectionWidth)
+    console.log('editorSectionWidth', editorSectionWidth)
+    console.log('event.pageX', event.pageX)
+    // viewSection.style.width = viewSectionWidth + '%'
+    // editorSection.style.width = editorSectionWidth + '%'
+
+    ghostBarElement.style.left = event.pageX + 'px'
+  })
+
+  useEffect(() => {
+    const ghostBarElement = document.getElementById('ghost_bar')
+    ghostBarElement.addEventListener('mousedown', function(event) {
+      event.preventDefault()
+      ghostBarElement.addEventListener('mousemove', resize)
+    })
+  }, [])
+
+  return <GhostBar id="ghost_bar" />
 }
 const menu = (
   <Menu>
@@ -161,24 +195,14 @@ export default props => {
     <Layout>
       <Wrapper>
         <WrapperSection>
-          <ProblemViewerSection>
+          <ProblemViewerSection id="problem_view_section">
             <Pdf src={question} />
-            {/* <HeaderResourcesSection>
-            <WrapperResources>
-              <ResourcesText>Resources :</ResourcesText>
-              <Dropdown overlay={menu} placement="bottomRight" overlayClassName={dropdownClassName}>
-                <OvalButton>bottomRight</OvalButton>
-              </Dropdown>
-            </WrapperResources>
-          </HeaderResourcesSection> */}
           </ProblemViewerSection>
           <SlideBar />
-          <ProblemEditorSection>
+          <ProblemEditorSection id="problem_editor_section">
             <WrapperEditor>
               <MonacoEditor language="java" theme="vs-dark" value="test" options={options} />
             </WrapperEditor>
-            <DropZone />
-            {/* <HeaderSection>test</HeaderSection> */}
           </ProblemEditorSection>
         </WrapperSection>
         <Footer>
@@ -196,7 +220,10 @@ export default props => {
               accept="application/zip, application/octet-stream, .java"
               multiple
               classNameFileName={classFileName}
-            />
+              planceholder=""
+            >
+              Select Files
+            </FileUploadButton>
             <OvalButton
               type="primary"
               onClick={() => {

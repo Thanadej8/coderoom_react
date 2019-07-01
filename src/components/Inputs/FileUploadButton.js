@@ -36,6 +36,7 @@ export default props => {
     onChange,
     name,
     value,
+    children,
     planceholder = 'ยังไม่มีไฟล์',
     classNameFileName,
     multiple = false,
@@ -46,7 +47,7 @@ export default props => {
     <Wrapper>
       <Input id={name} type={type} accept={accept} onChange={onChange} multiple={multiple} />
       <Label htmlFor={name} className={className} disabled={disabled}>
-        เลือกไฟล์
+        {children}
       </Label>
       <FileName className={classNameFileName}>{fileName}</FileName>
     </Wrapper>
