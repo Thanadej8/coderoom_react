@@ -1,18 +1,16 @@
-import React, { useMemo, useCallback, useEffect } from 'react'
+import React, { useMemo, useCallback, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-import MonacoEditor from 'react-monaco-editor'
 import { Dropdown, Menu, notification, message } from 'antd'
 import { css } from 'emotion'
-import uuidV1 from 'uuid/v1'
 
 import { useTitlePage } from '@hooks'
 import Inputs from '@components/Inputs'
 import question from '@assets/problems/question.pdf'
 import { OvalButton } from '@components/buttons'
+import Editor from '@components/Editor'
 
 import Layout from './components/Layout'
 import ProblemDetailModal from './components/ProblemDetailModal'
-import DropZone from './components/DropZone'
 
 const classFileName = css`
   font-size: 12px;
@@ -27,24 +25,22 @@ const Wrapper = styled.div`
 `
 const WrapperSection = styled.div`
   height: calc(100% - 60px);
-  position: relative;
   display: flex;
-  justify-content: space-between;
+  position: relative;
 `
 const ProblemViewerSection = styled.div`
-  width: 100%;
-  background-color: #fff;
+  width: 50%;
+  /* background-color: #fff; */
 `
 const ProblemEditorSection = styled.div`
-  width: 100%;
-  background-color: #fff;
-  position: relative;
+  width: 50%;
+  /* padding: 10px; */
+  /* background-color: #fff; */
 `
-const Pdf = styled.iframe`
+const Pdf = styled.embed`
   width: 100%;
   height: 100%;
   border: 0;
-  position: relative;
 `
 const HeaderSection = styled.div`
   height: 60px;
@@ -57,17 +53,25 @@ const HeaderResourcesSection = styled(HeaderSection)`
   align-items: center;
 `
 const GhostBar = styled.div`
-  width: 20px;
+  width: 18px;
   height: 100%;
-  left: 50%;
-  background-color: #a5a7b0;
-  position: absolute;
-  cursor: ew-resize;
-  z-index: 10;
+  background-color: #f1f1f1;
+  opacity: 1;
+  cursor: col-resize;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  /* &:hover {
+    opacity: 1;
+  } */
+`
+const TextGhostBar = styled.p`
+  transform: rotate(270deg);
+  color: #000;
 `
 const WrapperEditor = styled.div`
   height: 100%;
-  /* height: calc(100% - 60px); */
 `
 const WrapperResources = styled.div`
   display: flex;
@@ -77,7 +81,7 @@ const WrapperResources = styled.div`
 const Footer = styled.div`
   width: 100%;
   height: 60px;
-  border-top: 1px solid #a5a7b0;
+  /* border-top: 1px solid #a5a7b0; */
   background-color: #f1f1f1;
   display: flex;
 `
@@ -114,42 +118,52 @@ const ResourcesButton = styled(OvalButton)`
 `
 
 const SlideBar = props => {
-  const handleDragStart = useCallback(event => {
-    console.log('handleDragStart')
-    console.log('event', event)
-  })
-
-  const resize = useCallback(event => {
+  const handleResetLayout = useCallback(event => {
     const ghostBarElement = document.getElementById('ghost_bar')
     const viewSection = document.getElementById('problem_view_section')
     const editorSection = document.getElementById('problem_editor_section')
-    console.log('event', event)
+    viewSection.style.width = 50 + '%'
+    editorSection.style.width = 50 + '%'
+    ghostBarElement.style.left = 50 + '%'
+  })
 
+  const drag = useCallback(event => {
+    const ghostBarElement = document.getElementById('ghost_bar')
+    const viewSection = document.getElementById('problem_view_section')
+    const editorSection = document.getElementById('problem_editor_section')
+    document.selection ? document.selection.empty() : window.getSelection().removeAllRanges()
     const percentage = (event.pageX / window.innerWidth) * 100
-    const viewSectionWidth = 100 - percentage
-    const editorSectionWidth = percentage
-    // var mainPercentage = 100 - percentage
-    // problemViewSection.style.width =
-    // console.log('e.pageX+2', event.pageX + 2)
-    console.log('percentage', percentage)
-    console.log('viewSectionWidth', viewSectionWidth)
-    console.log('editorSectionWidth', editorSectionWidth)
-    console.log('event.pageX', event.pageX)
-    // viewSection.style.width = viewSectionWidth + '%'
-    // editorSection.style.width = editorSectionWidth + '%'
-
-    ghostBarElement.style.left = event.pageX + 'px'
+    viewSection.style.width = percentage + '%'
+    editorSection.style.width = 100 - percentage + '%'
+    ghostBarElement.style.left = percentage + '%'
   })
 
   useEffect(() => {
     const ghostBarElement = document.getElementById('ghost_bar')
-    ghostBarElement.addEventListener('mousedown', function(event) {
-      event.preventDefault()
-      ghostBarElement.addEventListener('mousemove', resize)
+    const wrapperSectionElement = document.getElementById('wrapper_section')
+    ghostBarElement.addEventListener('mousedown', () => {
+      wrapperSectionElement.addEventListener('mousemove', drag)
     })
-  }, [])
+    ghostBarElement.addEventListener('mouseup', () => {
+      wrapperSectionElement.removeEventListener('mousemove', drag)
+    })
+    ghostBarElement.addEventListener('dblclick', handleResetLayout)
+    return () => {
+      ghostBarElement.removeEventListener('mousedown', () => {
+        wrapperSectionElement.removeEventListener('mousemove', drag)
+      })
+      ghostBarElement.removeEventListener('mouseup', () => {
+        wrapperSectionElement.removeEventListener('mousemove', drag)
+      })
+      ghostBarElement.removeEventListener('dblclick', handleResetLayout)
+    }
+  })
 
-  return <GhostBar id="ghost_bar" />
+  return (
+    <GhostBar id="ghost_bar" ondblclick={handleResetLayout}>
+      <TextGhostBar>SCOLLER</TextGhostBar>
+    </GhostBar>
+  )
 }
 const menu = (
   <Menu>
@@ -160,6 +174,7 @@ const menu = (
 )
 
 export default props => {
+  const [editorValue, setEditorValue] = useState('')
   useTitlePage('Problem Name')
 
   const openNotification = useCallback(({ type, title, description }) => {
@@ -194,14 +209,23 @@ export default props => {
   return (
     <Layout>
       <Wrapper>
-        <WrapperSection>
+        <WrapperSection id="wrapper_section">
           <ProblemViewerSection id="problem_view_section">
             <Pdf src={question} />
           </ProblemViewerSection>
           <SlideBar />
           <ProblemEditorSection id="problem_editor_section">
             <WrapperEditor>
-              <MonacoEditor language="java" theme="vs-dark" value="test" options={options} />
+              <Editor
+                name="student_editor"
+                mode="java"
+                placeholder="test"
+                value={editorValue}
+                onChange={value => {
+                  console.log('value', value)
+                  setEditorValue(value)
+                }}
+              />
             </WrapperEditor>
           </ProblemEditorSection>
         </WrapperSection>
