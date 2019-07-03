@@ -87,7 +87,7 @@ const ProfileActions = styled.ul`
   ${props => props.theme.media('tablet')} {
     max-height: ${props => (props.isOpen ? (props.isAdmin ? '150px' : '105px') : '0px')};
     position: absolute;
-    top: 48px;
+    top: 51px;
     width: 100%;
   }
 `

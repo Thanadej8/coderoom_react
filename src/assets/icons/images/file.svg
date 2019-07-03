@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="20px" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>file</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M18.9492188,5.82737747 L15.671875,2.5506737 C15.3203125,2.19917985 14.84375,2 14.3476562,2 L6.375,2 C5.33984375,2.00390549 4.5,2.84358524 4.5,3.87853935 L4.5,20.1253661 C4.5,21.1603202 5.33984375,22 6.375,22 L17.625,22 C18.6601562,22 19.5,21.1603202 19.5,20.1253661 L19.5,7.15524312 C19.5,6.65924624 19.3007812,6.17887131 18.9492188,5.82737747 Z M17.4726562,7.00292912 L14.5,7.00292912 L14.5,4.03085335 L17.4726562,7.00292912 Z M6.375,20.1253661 L6.375,3.87853935 L12.625,3.87853935 L12.625,7.94024605 C12.625,8.45967584 13.0429688,8.87756298 13.5625,8.87756298 L17.625,8.87756298 L17.625,20.1253661 L6.375,20.1253661 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons/Regular/file" transform="translate(-4.000000, -2.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="file" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

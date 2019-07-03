@@ -179,4 +179,7 @@ injectGlobal`
   .ant-tabs {
     overflow: unset;
   }
+  .ant-dropdown {
+    z-index: 99999;
+  }
 `

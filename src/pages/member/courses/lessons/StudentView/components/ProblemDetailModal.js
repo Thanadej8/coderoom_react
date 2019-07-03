@@ -8,23 +8,17 @@ import { useModalProps } from '@hooks'
 import ProblemResult from '@components/ProblemResult'
 
 const className = css`
-  /* padding: 10px; */
   position: unset;
   top: 0;
   left: 0;
   transform: translate(0%, 0%);
   margin-right: 0;
   @media (min-width: 768px) {
-    /* position: absolute;
-    padding: 20px 0;
-    top: 0;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, 0%); */
   }
 `
 const overlayClassName = css`
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
 `
 
 const tooltipClassName = css`

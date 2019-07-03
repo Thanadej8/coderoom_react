@@ -3,24 +3,24 @@ import styled from '@emotion/styled'
 import { Dropdown, Menu, notification, message } from 'antd'
 import { css } from 'emotion'
 
-import { useTitlePage } from '@hooks'
+import { useTitlePage, useModalHandlers, useModalProps } from '@hooks'
 import Inputs from '@components/Inputs'
 import question from '@assets/problems/question.pdf'
-import { OvalButton } from '@components/buttons'
+import { OvalButton, AntdButton } from '@components/buttons'
 import Editor from '@components/Editor'
+import Icon from '@components/Icon'
 
 import Layout from './components/Layout'
 import ProblemDetailModal from './components/ProblemDetailModal'
+import DirectoryTreeModal from './components/DirectoryTreeModal'
+import SlideBar from './components/Slidebar'
 
 const classFileName = css`
   font-size: 12px;
   opacity: 0.8;
 `
-
 const Wrapper = styled.div`
   height: 100%;
-  /* height: calc(100% - 60px); */
-  /* background-color: #000; */
   overflow: hidden;
 `
 const WrapperSection = styled.div`
@@ -30,49 +30,16 @@ const WrapperSection = styled.div`
 `
 const ProblemViewerSection = styled.div`
   width: 50%;
-  /* background-color: #fff; */
 `
 const ProblemEditorSection = styled.div`
   width: 50%;
-  /* padding: 10px; */
-  /* background-color: #fff; */
 `
 const Pdf = styled.embed`
   width: 100%;
   height: 100%;
   border: 0;
 `
-const HeaderSection = styled.div`
-  height: 60px;
-  padding: 0 10px;
-`
-const HeaderResourcesSection = styled(HeaderSection)`
-  display: flex;
-  justify-content: flex-end;
-  align-content: center;
-  align-items: center;
-`
-const GhostBar = styled.div`
-  width: 18px;
-  height: 100%;
-  background-color: #f1f1f1;
-  opacity: 1;
-  cursor: col-resize;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  /* &:hover {
-    opacity: 1;
-  } */
-`
-const TextGhostBar = styled.p`
-  transform: rotate(270deg);
-  color: #000;
-`
-const WrapperEditor = styled.div`
-  height: 100%;
-`
+
 const WrapperResources = styled.div`
   display: flex;
   align-content: center;
@@ -81,9 +48,10 @@ const WrapperResources = styled.div`
 const Footer = styled.div`
   width: 100%;
   height: 60px;
-  /* border-top: 1px solid #a5a7b0; */
   background-color: #f1f1f1;
   display: flex;
+  position: fixed;
+  z-index: 99999;
 `
 const ProblemResourceSection = styled.div`
   width: 100%;
@@ -116,55 +84,23 @@ const FileUploadButton = styled(Inputs.FileUploadButton)`
 const ResourcesButton = styled(OvalButton)`
   color: #000;
 `
+const WrapperEditor = styled.div`
+  height: 100%;
+`
+const OpenDirectoryTreeButton = styled(AntdButton)`
+  color: ${props => props.theme.primaryColor};
+`
+const FileIcon = styled(Icon)`
+  color: ${props => props.theme.primaryColor};
+  margin-right: 5px;
+  font-size: 16px !important;
+`
+const WrapperSubmitButtons = styled.div`
+  display: flex;
+  align-content: center;
+  align-items: center;
+`
 
-const SlideBar = props => {
-  const handleResetLayout = useCallback(event => {
-    const ghostBarElement = document.getElementById('ghost_bar')
-    const viewSection = document.getElementById('problem_view_section')
-    const editorSection = document.getElementById('problem_editor_section')
-    viewSection.style.width = 50 + '%'
-    editorSection.style.width = 50 + '%'
-    ghostBarElement.style.left = 50 + '%'
-  })
-
-  const drag = useCallback(event => {
-    const ghostBarElement = document.getElementById('ghost_bar')
-    const viewSection = document.getElementById('problem_view_section')
-    const editorSection = document.getElementById('problem_editor_section')
-    document.selection ? document.selection.empty() : window.getSelection().removeAllRanges()
-    const percentage = (event.pageX / window.innerWidth) * 100
-    viewSection.style.width = percentage + '%'
-    editorSection.style.width = 100 - percentage + '%'
-    ghostBarElement.style.left = percentage + '%'
-  })
-
-  useEffect(() => {
-    const ghostBarElement = document.getElementById('ghost_bar')
-    const wrapperSectionElement = document.getElementById('wrapper_section')
-    ghostBarElement.addEventListener('mousedown', () => {
-      wrapperSectionElement.addEventListener('mousemove', drag)
-    })
-    ghostBarElement.addEventListener('mouseup', () => {
-      wrapperSectionElement.removeEventListener('mousemove', drag)
-    })
-    ghostBarElement.addEventListener('dblclick', handleResetLayout)
-    return () => {
-      ghostBarElement.removeEventListener('mousedown', () => {
-        wrapperSectionElement.removeEventListener('mousemove', drag)
-      })
-      ghostBarElement.removeEventListener('mouseup', () => {
-        wrapperSectionElement.removeEventListener('mousemove', drag)
-      })
-      ghostBarElement.removeEventListener('dblclick', handleResetLayout)
-    }
-  })
-
-  return (
-    <GhostBar id="ghost_bar" ondblclick={handleResetLayout}>
-      <TextGhostBar>SCOLLER</TextGhostBar>
-    </GhostBar>
-  )
-}
 const menu = (
   <Menu>
     <Menu.Item>1</Menu.Item>
@@ -201,11 +137,8 @@ export default props => {
     message.warning('This is a warning message')
   }, [])
 
-  const options = useMemo(() => ({
-    selectOnLineNumbers: true,
-    fontSize: 14,
-  }))
-
+  const directoryTreeModal = useModalHandlers('directoryTreeModal')
+  const directoryTreeModalProps = useModalProps('directoryTreeModal')
   return (
     <Layout>
       <Wrapper>
@@ -222,7 +155,6 @@ export default props => {
                 placeholder="test"
                 value={editorValue}
                 onChange={value => {
-                  console.log('value', value)
                   setEditorValue(value)
                 }}
               />
@@ -238,28 +170,41 @@ export default props => {
             </WrapperResources>
           </ProblemResourceSection>
           <ProblemSubmitSection>
-            <FileUploadButton
-              name="code_student_uploader"
-              type="file"
-              accept="application/zip, application/octet-stream, .java"
-              multiple
-              classNameFileName={classFileName}
-              planceholder=""
-            >
-              Select Files
-            </FileUploadButton>
-            <OvalButton
-              type="primary"
+            <OpenDirectoryTreeButton
               onClick={() => {
-                openNotification({ type: 'success', title: 'Test', description: 'notification' })
+                directoryTreeModalProps.isOpen
+                  ? directoryTreeModal.closeModal()
+                  : directoryTreeModal.openModal({})
               }}
             >
-              Submit
-            </OvalButton>
+              <FileIcon name="file" />
+              Labor.java
+            </OpenDirectoryTreeButton>
+            <WrapperSubmitButtons>
+              <FileUploadButton
+                name="code_student_uploader"
+                type="file"
+                accept="application/zip, application/octet-stream, .java"
+                multiple
+                classNameFileName={classFileName}
+                planceholder=""
+              >
+                Select Files
+              </FileUploadButton>
+              <OvalButton
+                type="primary"
+                onClick={() => {
+                  openNotification({ type: 'success', title: 'Test', description: 'notification' })
+                }}
+              >
+                Submit
+              </OvalButton>
+            </WrapperSubmitButtons>
           </ProblemSubmitSection>
         </Footer>
       </Wrapper>
       <ProblemDetailModal />
+      <DirectoryTreeModal />
     </Layout>
   )
 }
