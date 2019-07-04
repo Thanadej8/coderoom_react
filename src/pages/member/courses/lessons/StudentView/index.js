@@ -89,6 +89,12 @@ const WrapperEditor = styled.div`
 `
 const OpenDirectoryTreeButton = styled(AntdButton)`
   color: ${props => props.theme.primaryColor};
+  &:hover {
+    color: ${props => props.theme.primaryColor};
+  }
+  &:focus {
+    color: ${props => props.theme.primaryColor};
+  }
 `
 const FileIcon = styled(Icon)`
   color: ${props => props.theme.primaryColor};

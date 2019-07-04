@@ -50,6 +50,7 @@ export default props => {
     title = '',
     labelSubmit = 'Submit',
     disabledButton = false,
+    buttonType = 'danger',
   } = props
 
   return (
@@ -68,7 +69,7 @@ export default props => {
           {children}
           {!disabledButton && (
             <WrapperButtons>
-              <AntdButton type="danger" onClick={handleSubmit}>
+              <AntdButton type={buttonType} onClick={handleSubmit}>
                 {labelSubmit}
               </AntdButton>
             </WrapperButtons>
