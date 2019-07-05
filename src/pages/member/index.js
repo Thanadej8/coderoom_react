@@ -13,6 +13,9 @@ const AsyncMemberCoursesMembersPage = PageLoadable({
 const AsyncMemberCoursesLessonsPage = PageLoadable({
   loader: () => import('@pages/member/courses/lessons'),
 })
+const AsyncMemberCoursesLessonsProblemsPage = PageLoadable({
+  loader: () => import('@pages/member/courses/lessons/problems'),
+})
 
 export default props => {
   return (
@@ -35,8 +38,14 @@ export default props => {
       />
       <ProtectedRoute
         exact
-        path={patterns.courseLessons()}
+        path={[patterns.courseLessons(), patterns.courseDashboardProblems()]}
         component={AsyncMemberCoursesLessonsPage}
+      />
+      {/* เข้าได้เฉพาะอาจารย์ */}
+      <ProtectedRoute
+        exact
+        path={patterns.courseProblems()}
+        component={AsyncMemberCoursesLessonsProblemsPage}
       />
       <Route component={Page404} />
     </Switch>

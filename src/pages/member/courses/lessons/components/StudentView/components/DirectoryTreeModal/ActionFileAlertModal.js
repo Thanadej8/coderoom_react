@@ -46,6 +46,7 @@ const FileReduxForm = reduxForm({ form: 'fileForm' })(props => {
 
 export default props => {
   const { isOpen, closeModal, mode, type = 'file' } = useModalProps(
+    // # TODO รอดูว่า handleSubmit ไว้ข้างใน หรือข้างนอกดีกว่ากัน
     // const { isOpen, closeModal, handleSubmit, mode, type = 'file' } = useModalProps(
     'actionFileAlertModal',
   )

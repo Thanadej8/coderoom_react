@@ -65,6 +65,7 @@ const DetailBox = styled.div`
   font-weight: 300;
   padding: 5px 0;
   width: 100%;
+  border-radius: 4px;
   background-color: #f1f1f1;
   display: flex;
   flex-direction: column;
@@ -188,7 +189,7 @@ export default props => {
         </WrapperCourseTitle>
 
         <WrapperProgressBar>
-          <CourseProgressBar progress={20} />
+          <CourseProgressBar percent={20} />
         </WrapperProgressBar>
 
         <WrapperDetailBoxs>

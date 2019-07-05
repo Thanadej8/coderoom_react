@@ -30,6 +30,14 @@ const configs = [
     name: 'courseLessons',
     path: 'member/courses/:courseId/lessons/:lessonId',
   },
+  {
+    name: 'courseDashboardProblems',
+    path: 'member/courses/:courseId/lessons/:lessonId/problems',
+  },
+  {
+    name: 'courseProblems',
+    path: 'member/courses/:courseId/lessons/:lessonId/problems/:problemId',
+  },
 ]
 
 const prefix = ''

@@ -5,8 +5,11 @@ import Inputs from '@components/Inputs'
 import { WrapperField, ErrorFieldText } from '../StyleComponents'
 
 const ButtonInput = styled(Inputs.FileUploadButton)`
-  background-color: #000;
+  background-color: ${props => props.theme.primaryColor};
   color: #fff;
+  width: unset;
+  height: unset;
+  padding: 5px 10px;
 `
 
 export default props => {
@@ -46,7 +49,9 @@ export default props => {
         type={type}
         accept={accept}
         disabled={disabled || submitting}
-      />
+      >
+        เลือกไฟล์
+      </ButtonInput>
       {touched && (error && <ErrorFieldText>{error}</ErrorFieldText>)}
     </WrapperField>
   )

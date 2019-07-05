@@ -18,6 +18,7 @@ export default props => {
   } = props
   const currentUser = useSelector(state => state.app.currentUser)
   // TODO รอพี่มิก
+  // TODO เพิ่ม ให้รับ props เช็ค role
   // const action = Object.keys(permission)[0]
   // const subject = Object.values(permission)[0]
   // if (!isAccessTokenPresent() && !currentUser) return <Redirect to={paths.root()} />

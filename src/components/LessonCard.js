@@ -28,7 +28,7 @@ export default props => {
     <Wrapper>
       <CourseMode>Lesson Mode : {mode}</CourseMode>
       <CourseName>{name}</CourseName>
-      <ProgressBar name="Lesson" persent={progress} />
+      <ProgressBar name="Lesson" percent={progress} />
     </Wrapper>
   )
 }

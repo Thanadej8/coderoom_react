@@ -16,13 +16,12 @@ const CustomFormCol = styled(FormCol)`
   flex-direction: column;
 `
 
-const modeOptions = [{ label: 'Learing', value: 'learing' }, { label: 'Exam', value: 'exam' }]
-const guildOptions = [{ label: 'Suggest', value: 'true' }, { label: 'Unsuggest', value: 'false' }]
-const submitOptions = [{ label: 'Allow', value: 'true' }, { label: 'Disallow', value: 'false' }]
+const languageOptions = [{ label: 'Java', value: 'java' }]
+const stuctureOptions = [{ label: 'Parse', value: 'true' }, { label: 'None Parse', value: 'false' }]
 
 export default props => {
-  const formName = 'lessonForm'
-  const { isOpen, closeModal, lesson, mode = 'edit' } = useModalProps('lessonFormModal')
+  const formName = 'problemForm'
+  const { isOpen, closeModal, problem, mode = 'edit' } = useModalProps('problemFormModal')
   const validate = values => {
     let error = {}
 
@@ -38,10 +37,10 @@ export default props => {
     <ReduxFormModal
       isOpen={isOpen}
       closeModal={closeModal}
-      title={`${mode === 'create' ? 'Add' : 'Edit'} Lesson`}
+      title={`${mode === 'create' ? 'Add' : 'Edit'} Problem`}
       form={formName}
       mode={mode}
-      initialValues={{ ...lesson }}
+      initialValues={{ ...problem }}
       validate={validate}
       handleSubmit={mode === 'create' ? handleSubmitAddForm : handleSubmitEditForm}
     >
@@ -53,38 +52,67 @@ export default props => {
       </FormRow>
       <FormRow>
         <CustomFormCol>
-          <Label>mode :</Label>
+          <Label>Description :</Label>
           <Field
-            name="mode"
+            name="description"
+            component={Fields.TextArea}
+            placeholder="Description"
+            validate={[isRequired]}
+          />
+        </CustomFormCol>
+      </FormRow>
+      <FormRow>
+        <CustomFormCol>
+          <Label>Time Limit (s) :</Label>
+          <Field
+            name="timeLimit"
+            component={Fields.Cleave}
+            placeholder="Time Limit"
+            validate={[isRequired]}
+            options={{ numericOnly: true }}
+          />
+        </CustomFormCol>
+      </FormRow>
+      <FormRow>
+        <CustomFormCol>
+          <Label>Memory Limit (MB) :</Label>
+          <Field
+            name="memoryLimit"
+            component={Fields.Cleave}
+            placeholder="Memory Limit"
+            validate={[isRequired]}
+            options={{ numericOnly: true }}
+          />
+        </CustomFormCol>
+      </FormRow>
+      <FormRow>
+        <CustomFormCol>
+          <Label>Language :</Label>
+          <Field
+            name="language"
             component={Fields.Select}
-            placeholder="Mode"
-            options={modeOptions}
+            placeholder="Language"
+            options={languageOptions}
             isClearable
           />
         </CustomFormCol>
       </FormRow>
       <FormRow>
         <CustomFormCol>
-          <Label>guild :</Label>
+          <Label>Stucture :</Label>
           <Field
-            name="guild"
+            name="stucture"
             component={Fields.Select}
-            placeholder="Guild"
-            options={guildOptions}
+            placeholder="Stucture"
+            options={stuctureOptions}
             isClearable
           />
         </CustomFormCol>
       </FormRow>
       <FormRow>
         <CustomFormCol>
-          <Label>submit :</Label>
-          <Field
-            name="submit"
-            component={Fields.Select}
-            placeholder="Submit"
-            options={submitOptions}
-            isClearable
-          />
+          <Label>Select File :</Label>
+          <Field name="file" component={Fields.FileUploadButton} validate={[isRequired]} />
         </CustomFormCol>
       </FormRow>
     </ReduxFormModal>
