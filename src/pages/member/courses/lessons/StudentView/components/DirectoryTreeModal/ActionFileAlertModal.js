@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import styled from '@emotion/styled'
 
@@ -45,19 +45,27 @@ const FileReduxForm = reduxForm({ form: 'fileForm' })(props => {
 })
 
 export default props => {
-  const { isOpen, closeModal, handleSubmit, mode } = useModalProps('actionFileAlertModal')
+  const { isOpen, closeModal, mode, type = 'file' } = useModalProps(
+    // const { isOpen, closeModal, handleSubmit, mode, type = 'file' } = useModalProps(
+    'actionFileAlertModal',
+  )
+  const handleSubmit = useCallback(async values => {
+    // const response = await Http.get()
+    console.log('handleSubmit', values)
+  }, [])
+
   const title = useMemo(() => {
     switch (mode) {
       case 'create':
-        return 'Create file'
+        return `Create ${type}`
       case 'edit':
-        return 'Edit filename'
+        return `Edit ${type}name`
       case 'delete':
-        return 'Delete file'
+        return `Delete ${type}`
       default:
         return ''
     }
-  }, [mode])
+  }, [mode, type])
   return (
     <AlertModal
       isOpen={isOpen}

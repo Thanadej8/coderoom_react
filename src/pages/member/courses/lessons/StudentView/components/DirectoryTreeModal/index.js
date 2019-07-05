@@ -227,7 +227,17 @@ export default props => {
           })}
         </DirectoryTree>
         <WrapperCreateButtons>
-          <AntdButton type="primary">Create folder</AntdButton>
+          <AntdButton
+            type="primary"
+            onClick={() => {
+              actionFileAlertModal.openModal({
+                mode: 'create',
+                type: 'folder',
+              })
+            }}
+          >
+            Create folder
+          </AntdButton>
         </WrapperCreateButtons>
       </Card>
       <ActionFileAlertModal />
