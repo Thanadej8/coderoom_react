@@ -6,7 +6,7 @@ const Card = styled.div`
   height: 100%;
   background-color: #fff;
   border: 1px solid #f1f1f1;
-  padding: 10px;
+  padding: 15px;
 `
 
 export default props => {

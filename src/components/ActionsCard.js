@@ -37,7 +37,13 @@ const ActionButton = styled(AntdButton)`
   }
 `
 export default props => {
-  const { handleEditButtonClick, handleDeleteButtonClick, children } = props
+  const {
+    handleEditButtonClick,
+    handleDeleteButtonClick,
+    children,
+    disableDeleteButton,
+    disableEditButton,
+  } = props
   return (
     <WrapperCard>
       {children}
@@ -45,12 +51,16 @@ export default props => {
         <WrapperActions>
           <ActionTitle>Managements :</ActionTitle>
           <WrapperActionIcons>
-            <ActionButton onClick={handleEditButtonClick}>
-              <Icon name="edit" />{' '}
-            </ActionButton>
-            <ActionButton type="danger" onClick={handleDeleteButtonClick}>
-              <Icon name="trash-alt" />{' '}
-            </ActionButton>
+            {!disableEditButton && (
+              <ActionButton onClick={handleEditButtonClick}>
+                <Icon name="edit" />{' '}
+              </ActionButton>
+            )}
+            {!disableDeleteButton && (
+              <ActionButton type="danger" onClick={handleDeleteButtonClick}>
+                <Icon name="trash-alt" />{' '}
+              </ActionButton>
+            )}
           </WrapperActionIcons>
         </WrapperActions>
       </Authorized>

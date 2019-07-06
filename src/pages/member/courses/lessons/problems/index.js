@@ -3,12 +3,18 @@ import styled from '@emotion/styled'
 
 import Layout from '@components/MemberLayout'
 import Card from '@components/Card'
-import ActionsTopic from '@components/ActionsTopic'
-import { AddCircleButton } from '@components/buttons'
+import ActionsCard from '@components/ActionsCard'
 import { useModalHandlers } from '@hooks'
+
+import ResourceSection from './components/ResourceSection'
+import FileSection from './components/FileSection'
+import DriverSection from './components/DriverSction'
+
+import ProblemFormModel from '../components/ProblemFormModel'
 
 const ProblemDetailCard = styled(Card)`
   border: none;
+  padding: 10px;
 `
 const ProblemName = styled.p`
   margin-bottom: 5px;
@@ -25,30 +31,7 @@ const WrapperDetailBoxs = styled.div`
   grid-gap: 10px;
   grid-template-columns: 100%;
   ${props => props.theme.media('tablet')} {
-    /* flex-direction: row; */
     grid-template-columns: calc(33.3% - 10px) calc(33.3% - 10px) calc(33.3% - 10px);
-  }
-`
-const WrapperDetailBox = styled.div`
-  width: 100%;
-  /* margin-bottom: 5px; */
-  padding: 0 5px;
-  margin-bottom: 0px;
-  &:nth-of-type(1) {
-    padding-left: 0px;
-  }
-  &:nth-last-of-type(1) {
-    padding-right: 0px;
-  }
-  ${props => props.theme.media('tablet')} {
-    padding: 0 5px;
-    margin-bottom: 0px;
-    &:nth-of-type(1) {
-      padding-left: 0px;
-    }
-    &:nth-last-of-type(1) {
-      padding-right: 0px;
-    }
   }
 `
 const DetailBox = styled.div`
@@ -75,55 +58,59 @@ const DetailBox = styled.div`
     height: 80px;
   }
 `
-const WrapperActionTopic = styled.div`
-  margin: 10px 0;
-`
-const WrapperActionButton = styled.div`
-  margin: 0 5px;
-  &:nth-last-of-type(1) {
-    margin: 0;
-  }
+const WrapperCard = styled.div`
+  margin-bottom: 10px;
 `
 
 export default props => {
-  // const problemFormModal = useModalHandlers('problemFormModal')
+  const problemFormModal = useModalHandlers('problemFormModal')
+  const alertModal = useModalHandlers('alertModal')
   return (
     <Layout>
-      <ProblemDetailCard>
-        <ProblemName>Labol</ProblemName>
-        <ProblemDescription>ฝึกเขียนโปรแกรมรูปแบบ OOP</ProblemDescription>
-        <WrapperDetailBoxs>
-          <DetailBox>
-            <p>Java</p>
-            <p>Language</p>
-          </DetailBox>
-          <DetailBox>
-            <p>1 MB</p>
-            <p>Memory Limit</p>
-          </DetailBox>
-          <DetailBox>
-            <p>1 s</p>
-            <p>Time Limit</p>
-          </DetailBox>
-          <DetailBox>
-            <p>Parse</p>
-            <p>Stucture</p>
-          </DetailBox>
-        </WrapperDetailBoxs>
-      </ProblemDetailCard>
-      <WrapperActionTopic>
-        <ActionsTopic name="Problems">
-          <WrapperActionButton>
-            <AddCircleButton
-              onClick={() => {
-                // problemFormModal.openModal({
-                //   mode: 'create',
-                // })
-              }}
-            />
-          </WrapperActionButton>
-        </ActionsTopic>
-      </WrapperActionTopic>
+      <WrapperCard>
+        <ActionsCard
+          handleEditButtonClick={() => {
+            problemFormModal.openModal({
+              mode: 'edit',
+              problem: { name: '' },
+            })
+          }}
+          handleDeleteButtonClick={() => {
+            alertModal.openModal({
+              title: 'Delete Problem',
+              render: <p>Are you sure?</p>,
+            })
+          }}
+        >
+          <ProblemDetailCard>
+            <ProblemName>Labol</ProblemName>
+            <ProblemDescription>ฝึกเขียนโปรแกรมรูปแบบ OOP</ProblemDescription>
+            <WrapperDetailBoxs>
+              <DetailBox>
+                <p>Java</p>
+                <p>Language</p>
+              </DetailBox>
+              <DetailBox>
+                <p>1 MB</p>
+                <p>Memory Limit</p>
+              </DetailBox>
+              <DetailBox>
+                <p>1 s</p>
+                <p>Time Limit</p>
+              </DetailBox>
+              <DetailBox>
+                <p>Parse</p>
+                <p>Stucture</p>
+              </DetailBox>
+            </WrapperDetailBoxs>
+          </ProblemDetailCard>
+        </ActionsCard>
+      </WrapperCard>
+
+      <ResourceSection />
+      <FileSection />
+      <DriverSection />
+      <ProblemFormModel />
     </Layout>
   )
 }

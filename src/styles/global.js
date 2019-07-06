@@ -182,4 +182,7 @@ injectGlobal`
   .ant-dropdown {
     z-index: 99999;
   }
+  .ant-collapse-content > .ant-collapse-content-box {
+    padding: 10px;
+  }
 `
