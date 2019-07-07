@@ -14,6 +14,7 @@ const WrapperActionButton = styled.div`
   }
 `
 const WrapperInSols = styled.div`
+  padding: 0 10px;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: calc(50% - 5px) calc(50% - 5px);
