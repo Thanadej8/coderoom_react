@@ -9,7 +9,7 @@ import TeacherView from './components/TeacherView'
 export default props => {
   const currentUser = useSelector(state => state.app.currentUser)
 
-  if (!can(currentUser, 'student')) {
+  if (can(currentUser, 'student')) {
     return <StudentView {...props} />
   } else {
     return <TeacherView {...props} />
