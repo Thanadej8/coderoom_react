@@ -134,7 +134,7 @@ export default props => {
         ],
       },
       {
-        title: 'Sumary',
+        title: 'Summary',
         width: '10%',
         children: [
           {

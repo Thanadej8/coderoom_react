@@ -89,10 +89,10 @@ export default props => {
               <ManagementCol>
                 <WrapperSelect>
                   <Inputs.Select
-                    defaultValue={{ label: 'Suggest', value: 'true' }}
+                    defaultValue={{ label: 'Enable', value: 'true' }}
                     options={[
-                      { label: 'Suggest', value: 'true' },
-                      { label: 'Unsuggest', value: 'false' },
+                      { label: 'Enable', value: 'true' },
+                      { label: 'Disable', value: 'false' },
                     ]}
                   />
                 </WrapperSelect>

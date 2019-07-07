@@ -164,7 +164,7 @@ export default props => {
               <p>Students</p>
             </InfoBox>
           </WrapperInformation>
-          {!isMoreCourse && <ProgressBar percent={20} />}
+          {!isMoreCourse && <ProgressBar name="Course" percent={20} />}
         </FrontView>
         <BackView isMoreCourse={isMoreCourse}>
           <BackTitle>Research Method Summer I</BackTitle>

@@ -21,7 +21,7 @@ const Title = styled.h3`
   font-weight: 400;
   color: ${props => props.theme.primaryColor};
 `
-const SumaryResult = styled.h3`
+const SummaryResult = styled.h3`
   font-weight: 400;
   color: ${props => props.theme.primaryColor};
 `
@@ -119,7 +119,7 @@ export default props => {
     <Card>
       <WrapperTitle>
         <Title>Test Case</Title>
-        <SumaryResult>1 / 2 Correct</SumaryResult>
+        <SummaryResult>1 / 2 Correct</SummaryResult>
       </WrapperTitle>
       <WrapperTable>
         <Table
@@ -146,7 +146,7 @@ export default props => {
       </WrapperTable>
       <WrapperTitle>
         <Title>Stucture</Title>
-        <SumaryResult>160 / 320 Point</SumaryResult>
+        <SummaryResult>160 / 320 Point</SummaryResult>
       </WrapperTitle>
       <WrapperStuctureResult>
         <FieldCard>

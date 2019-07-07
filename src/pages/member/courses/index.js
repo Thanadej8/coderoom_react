@@ -189,7 +189,7 @@ export default props => {
         </WrapperCourseTitle>
 
         <WrapperProgressBar>
-          <CourseProgressBar percent={20} />
+          <CourseProgressBar name="Course" percent={20} />
         </WrapperProgressBar>
 
         <WrapperDetailBoxs>

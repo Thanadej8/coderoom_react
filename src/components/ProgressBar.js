@@ -51,7 +51,7 @@ export default props => {
   return (
     <Wrapper className={className}>
       <Header>
-        <Text>Progress {name}</Text>
+        <Text>{name} Progress</Text>
         <Text>{percent}%</Text>
       </Header>
       <ProgressBar>

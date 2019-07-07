@@ -116,7 +116,7 @@ export default props => {
             },
           },
           {
-            title: 'Sumary',
+            title: 'Summary',
             dataIndex: '',
             align: 'center',
             render: (text, record) => {
@@ -169,7 +169,7 @@ export default props => {
             },
           },
           {
-            title: 'Sumary',
+            title: 'Summary',
             dataIndex: '',
             align: 'center',
             render: (text, record) => {
