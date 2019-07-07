@@ -13,6 +13,10 @@ const Wrapper = styled.div`
     margin-bottom: 10px;
   }
 `
+const PointText = styled.p`
+  font-weight: 400;
+  color: ${props => props.theme.primaryColor};
+`
 
 export default props => {
   const { tpye, point } = props
@@ -22,7 +26,7 @@ export default props => {
         title={
           <WrapperTitle>
             <p>{tpye}</p>
-            <p>{point} Point</p>
+            <PointText>{point} Point</PointText>
           </WrapperTitle>
         }
         bordered

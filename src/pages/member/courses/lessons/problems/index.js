@@ -4,13 +4,15 @@ import styled from '@emotion/styled'
 import Layout from '@components/MemberLayout'
 import Card from '@components/Card'
 import ActionsCard from '@components/ActionsCard'
-import { useModalHandlers } from '@hooks'
+import Tabs, { TabPane } from '@components/Tabs'
+import { useModalHandlers, useTitlePage } from '@hooks'
 
 import ResourceSection from './components/ResourceSection'
 import FileSection from './components/FileSection'
 import DriverSection from './components/DriverSction'
-
 import ProblemFormModel from '../components/ProblemFormModel'
+import NewInspectionSection from './components/NewInspectionSection'
+import SubmissionTestSection from './components/SubmissionTestSection'
 
 const ProblemDetailCard = styled(Card)`
   border: none;
@@ -18,7 +20,8 @@ const ProblemDetailCard = styled(Card)`
 `
 const ProblemName = styled.p`
   margin-bottom: 5px;
-  font-size: 16px;
+  font-size: 18px;
+  color: ${props => props.theme.primaryColor};
 `
 const ProblemDescription = styled.p`
   color: #969696;
@@ -61,8 +64,14 @@ const DetailBox = styled.div`
 const WrapperCard = styled.div`
   margin-bottom: 10px;
 `
+const TabCard = styled.div`
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+`
 
 export default props => {
+  useTitlePage('Problem Name')
   const problemFormModal = useModalHandlers('problemFormModal')
   const alertModal = useModalHandlers('alertModal')
   return (
@@ -105,11 +114,23 @@ export default props => {
             </WrapperDetailBoxs>
           </ProblemDetailCard>
         </ActionsCard>
+        <Tabs>
+          <TabPane tab="Submission test" key="submission_test">
+            <TabCard>
+              <SubmissionTestSection />
+            </TabCard>
+          </TabPane>
+          <TabPane tab="New inspection" key="new_inspection">
+            <TabCard>
+              <NewInspectionSection />
+            </TabCard>
+          </TabPane>
+        </Tabs>
       </WrapperCard>
 
       <ResourceSection />
-      <FileSection />
       <DriverSection />
+      <FileSection />
       <ProblemFormModel />
     </Layout>
   )
