@@ -41,7 +41,6 @@ export default props => {
         path={[patterns.courseLessons(), patterns.courseDashboardProblems()]}
         component={AsyncMemberCoursesLessonsPage}
       />
-      {/* เข้าได้เฉพาะอาจารย์ */}
       <ProtectedRoute
         exact
         path={patterns.courseProblems()}

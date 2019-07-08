@@ -8,6 +8,7 @@ import QuillEditor from './QuillEditor'
 import Transfer from './Transfer'
 import FileUploadButton from './FileUploadButton'
 import ImagePreviewUpload from './ImagePreviewUpload'
+import SortableTree from './SortableTree'
 
 export default {
   Text,
@@ -20,4 +21,5 @@ export default {
   Transfer,
   FileUploadButton,
   ImagePreviewUpload,
+  SortableTree,
 }

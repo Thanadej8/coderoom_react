@@ -11,6 +11,7 @@ import '@styles/global'
 import '@assets/icons/css/Glyphter.css'
 import 'moment/locale/th'
 import 'react-quill/dist/quill.snow.css'
+import 'react-sortable-tree/style.css'
 
 const AsyncPages = PageLoadable({ loader: () => import('@pages') })
 

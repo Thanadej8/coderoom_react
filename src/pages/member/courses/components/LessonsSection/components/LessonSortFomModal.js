@@ -36,7 +36,9 @@ export default props => {
       title={`Lessons Sort`}
       form={formName}
       mode="edit"
-      initialValues={{}}
+      initialValues={{
+        lessons,
+      }}
       validate={validate}
       handleSubmit={handleSubmit}
     >
@@ -45,42 +47,9 @@ export default props => {
           <Label>lessons :</Label>
           <Field
             name="lessons"
-            component={Fields.Transfer}
-            titles={['lessons', 'sorted lessons']}
-            render={item => item.title}
-            dataSource={[
-              {
-                key: '1',
-                title: 'Loop 1 ชั้น',
-                description: '',
-                disabled: false,
-              },
-              {
-                key: '2',
-                title: 'Loop 2 ชั้น',
-                description: '',
-                disabled: false,
-              },
-              {
-                key: '3',
-                title: 'Loop 3 ชั้น',
-                description: '',
-                disabled: false,
-              },
-              {
-                key: '4',
-                title: 'Loop 4 ชั้น',
-                description: '',
-                disabled: false,
-              },
-              {
-                key: '5',
-                title: 'Loop 5 ชั้น',
-                description: '',
-                disabled: false,
-              },
-            ]}
+            component={Fields.SortableTree}
             validate={[isRequired]}
+            maxDepth={5}
           />
         </CustomFormCol>
       </FormRow>

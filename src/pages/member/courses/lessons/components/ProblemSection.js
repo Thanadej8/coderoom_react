@@ -9,8 +9,8 @@ import Card from '@components/Card'
 import ActionsCard from '@components/ActionsCard'
 import { paths } from '@routers'
 
-import ProblemSortFormModal from './components/ProblemSortFomModal'
-import ProblemFormModal from '../ProblemFormModel'
+import ProblemSortFormModal from './ProblemSortFomModal'
+import ProblemFormModal from './ProblemFormModel'
 
 const WrapperActionButton = styled.div`
   margin: 0 5px;
