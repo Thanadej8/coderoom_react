@@ -6,12 +6,23 @@ import Modal from './Modal'
 import Icon from '@components/Icon'
 
 const className = css`
+  @keyframes bottomSlide {
+    from {
+      top: ${window.innerHeight}px;
+    }
+    to {
+      top: 0px;
+    }
+  }
+
+  animation: bottomSlide 0.4s;
   padding: 10px;
   position: unset;
   top: 0;
   left: 0;
   transform: translate(0%, 0%);
   margin-right: 0;
+
   @media (min-width: 768px) {
     position: absolute;
     padding: 20px 0;

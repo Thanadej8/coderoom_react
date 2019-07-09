@@ -14,8 +14,8 @@ export default props => {
       maxDepth={maxDepth}
       treeData={treeData}
       onChange={onChange}
-      canDrag={canDrag}
-      canDrop={canDrop}
+      // canDrag={canDrag}
+      // canDrop={canDrop}
     />
   )
 }

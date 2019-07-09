@@ -2,12 +2,19 @@ import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
 import { Field, getFormError, isSubmitting } from 'redux-form'
 import { useSelector } from 'react-redux'
+import { css } from 'emotion'
 
 import { useModalProps } from '@hooks'
 import Fields from '@components/forms/Fields'
 import { isRequired } from '@components/forms/validators'
 import { FormRow, FormCol } from '@components/flex'
 import ReduxFormModal from '@components/ReduxFormModal'
+
+const classFormCard = css`
+  @media (min-width: 768px) {
+    width: 700px !important;
+  }
+`
 
 const Label = styled.p`
   margin-bottom: 5px;
@@ -36,51 +43,19 @@ export default props => {
       title={`Problems Sort`}
       form={formName}
       mode="edit"
-      initialValues={{}}
+      initialValues={{ problems }}
       validate={validate}
       handleSubmit={handleSubmit}
+      classFormCard={classFormCard}
     >
       <FormRow>
         <CustomFormCol>
           <Label>problems :</Label>
           <Field
             name="problems"
-            component={Fields.Transfer}
-            titles={['problems', 'sorted problems']}
-            render={item => item.title}
-            dataSource={[
-              {
-                key: '1',
-                title: 'Loop 1 ชั้น',
-                description: '',
-                disabled: false,
-              },
-              {
-                key: '2',
-                title: 'Loop 2 ชั้น',
-                description: '',
-                disabled: false,
-              },
-              {
-                key: '3',
-                title: 'Loop 3 ชั้น',
-                description: '',
-                disabled: false,
-              },
-              {
-                key: '4',
-                title: 'Loop 4 ชั้น',
-                description: '',
-                disabled: false,
-              },
-              {
-                key: '5',
-                title: 'Loop 5 ชั้น',
-                description: '',
-                disabled: false,
-              },
-            ]}
+            component={Fields.SortableTree}
             validate={[isRequired]}
+            maxDepth={1}
           />
         </CustomFormCol>
       </FormRow>

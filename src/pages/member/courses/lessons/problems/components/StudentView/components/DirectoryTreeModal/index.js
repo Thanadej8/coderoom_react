@@ -13,11 +13,20 @@ import ActionFileAlertModal from './ActionFileAlertModal'
 const { TreeNode, DirectoryTree } = Tree
 
 const classNameModal = css`
+  @keyframes openBottomSlide {
+    from {
+      bottom: -300px;
+    }
+    to {
+      bottom: 61px;
+    }
+  }
   transform: unset;
   margin-right: unset;
   top: unset;
   bottom: 61px;
   left: calc(50% + 10px);
+  animation: openBottomSlide 0.4s;
 `
 const tooltipClassName = css`
   z-index: 9999999;

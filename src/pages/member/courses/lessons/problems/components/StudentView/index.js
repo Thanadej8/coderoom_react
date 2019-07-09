@@ -117,7 +117,6 @@ const menu = (
 
 export default props => {
   const [editorValue, setEditorValue] = useState('')
-  useTitlePage('Lessons Name')
 
   const openNotification = useCallback(({ type, title, description }) => {
     notification[type]({

@@ -71,7 +71,6 @@ const TabCard = styled.div`
 `
 
 export default props => {
-  useTitlePage('Problem Name')
   const problemFormModal = useModalHandlers('problemFormModal')
   const alertModal = useModalHandlers('alertModal')
   return (

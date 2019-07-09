@@ -6,7 +6,7 @@ import Icon from '@components/Icon'
 import Modal from './Modal'
 
 const Card = styled.div`
-  width: 100%;
+  width: 325px;
   background-color: #fff;
   ${props => props.theme.media('tablet')} {
     width: 350px;

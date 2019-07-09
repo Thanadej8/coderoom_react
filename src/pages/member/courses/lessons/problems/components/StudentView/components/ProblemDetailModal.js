@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react'
 import { css } from 'emotion'
 import styled from '@emotion/styled'
 import { Tooltip } from 'antd'
+import { keyframes } from '@emotion/core'
 
 import { Modal } from '@components/modals'
 import { useModalProps } from '@hooks'
@@ -24,6 +25,14 @@ const overlayClassName = css`
 const tooltipClassName = css`
   z-index: 9999999;
 `
+const slideProblemNav = keyframes`
+  from {
+    left: -300px;
+  }
+  to {
+    left: 0;
+  }
+`
 
 const ProblemNav = styled.div`
   background-color: #fff;
@@ -37,6 +46,7 @@ const ProblemNav = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  animation: ${slideProblemNav} 0.4s;
 `
 const Problem = styled.div`
   padding: 15px;
@@ -74,7 +84,14 @@ const CorrectProblemText = styled.p`
   border-radius: 5px;
   color: #fff;
 `
-
+const slideWrapperProblemDetail = keyframes`
+  from {
+    top: ${window.innerHeight}px;
+  }
+  to {
+    top: 0;
+  }
+`
 const WrapperProblemDetail = styled.div`
   position: absolute;
   top: 0;
@@ -84,6 +101,7 @@ const WrapperProblemDetail = styled.div`
   padding: 80px 20px 20px 20px;
   overflow-y: auto;
   z-index: 0;
+  animation: ${slideWrapperProblemDetail} 0.4s;
 `
 const ProblemDetail = styled.div`
   width: 650px;
