@@ -14,6 +14,7 @@ import Layout from './components/Layout'
 import ProblemDetailModal from './components/ProblemDetailModal'
 import DirectoryTreeModal from './components/DirectoryTreeModal'
 import SlideBar from './components/Slidebar'
+import ResourceModal from './components/ResourceModal'
 
 const classFileName = css`
   font-size: 12px;
@@ -144,6 +145,8 @@ export default props => {
 
   const directoryTreeModal = useModalHandlers('directoryTreeModal')
   const directoryTreeModalProps = useModalProps('directoryTreeModal')
+  const resourceModal = useModalHandlers('resourceModal')
+  const resourceModalProps = useModalProps('resourceModal')
   return (
     <Layout>
       <Wrapper>
@@ -169,14 +172,23 @@ export default props => {
         <Footer>
           <ProblemResourceSection>
             <WrapperResources>
-              <Dropdown overlay={menu} placement="topLeft" trigger={['hover', 'click']}>
-                <ResourcesButton type="dashed">Resources</ResourcesButton>
-              </Dropdown>
+              <ResourcesButton
+                type="dashed"
+                onClick={() => {
+                  directoryTreeModalProps.isOpen && directoryTreeModal.closeModal()
+                  resourceModalProps.isOpen
+                    ? resourceModal.closeModal()
+                    : resourceModal.openModal({})
+                }}
+              >
+                Resources
+              </ResourcesButton>
             </WrapperResources>
           </ProblemResourceSection>
           <ProblemSubmitSection>
             <OpenDirectoryTreeButton
               onClick={() => {
+                resourceModalProps.isOpen && resourceModal.closeModal()
                 directoryTreeModalProps.isOpen
                   ? directoryTreeModal.closeModal()
                   : directoryTreeModal.openModal({})
@@ -210,6 +222,7 @@ export default props => {
       </Wrapper>
       <ProblemDetailModal />
       <DirectoryTreeModal />
+      <ResourceModal />
     </Layout>
   )
 }

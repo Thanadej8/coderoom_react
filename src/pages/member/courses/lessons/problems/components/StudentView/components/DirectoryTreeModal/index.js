@@ -38,6 +38,9 @@ const Card = styled.div`
   padding: 10px;
   position: relative;
   box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  .ant-tree li .ant-tree-node-content-wrapper {
+    color: #000;
+  }
 `
 
 const ActionBar = styled.div`
